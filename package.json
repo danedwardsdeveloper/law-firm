@@ -9,9 +9,10 @@
 		"links": "linkinator http://localhost:3000 --recurse",
 		"test": "vitest",
 		"predeploy": "pnpm format && pnpm lint && pnpm build",
-		"deploy": "fly deploy"
+		"deploy": "vercel deploy --prebuilt"
 	},
 	"dependencies": {
+		"@types/proper-url-join": "^2.1.5",
 		"clsx": "^2.1.1",
 		"humanize-plus": "^1.8.2",
 		"next": "15.2.1",
@@ -30,6 +31,7 @@
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"autoprefixer": "^10.4.20",
+		"dotenv": "^16.4.7",
 		"eslint": "^9.20.1",
 		"eslint-config-next": "^15.2.1",
 		"express": "^4.21.1",
