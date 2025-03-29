@@ -7,9 +7,12 @@ import Menu from '@/components/Menu'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-	title: '%s | Archer Finch Legal',
+	title: 'Archer Finch Legal',
 	metadataBase: new URL(dynamicBaseURL),
 	description: 'Site description',
+	openGraph: {
+		images: ['/images/papers.png'],
+	},
 	alternates: {
 		canonical: dynamicBaseURL,
 	},
