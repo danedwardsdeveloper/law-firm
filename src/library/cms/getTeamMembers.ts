@@ -42,7 +42,25 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 			})
 		}
 
-		teamMembersCache = teamMembersData
+		const sortedTeamMembers = teamMembersData.sort((a, b) => {
+			const getRoleOrder = (role: string) => {
+				if (role.includes('Partner')) return 1
+				if (role.includes('Associate')) return 2
+				if (role.toLowerCase().includes('solicitor')) return 3
+				return 4
+			}
+
+			const orderA = getRoleOrder(a.role)
+			const orderB = getRoleOrder(b.role)
+
+			if (orderA !== orderB) {
+				return orderA - orderB
+			}
+
+			return a.title.localeCompare(b.title)
+		})
+
+		teamMembersCache = sortedTeamMembers
 		return teamMembersData
 	} catch (error) {
 		logger.error('getTeamMembers error: ', error)
