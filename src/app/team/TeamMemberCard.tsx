@@ -2,7 +2,7 @@ import type { TeamMember } from '@/types/definitions/teamMember'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function PersonCard({ teamMember, priority }: { teamMember: TeamMember; priority: boolean }) {
+export default function TeamMemberCard({ teamMember, priority }: { teamMember: TeamMember; priority: boolean }) {
 	return (
 		<Link href={`/team/${teamMember.slug}`}>
 			<h2 className="text-xl font-medium">{teamMember.title}</h2>
