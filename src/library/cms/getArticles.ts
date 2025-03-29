@@ -1,5 +1,5 @@
 import urlJoin from 'proper-url-join'
-import { wordpressApi } from '../environment/serverVariables'
+import { wordpressRestApi } from '../environment/publicVariables'
 import logger from '../logger'
 
 export type Article = {
@@ -19,7 +19,7 @@ export async function getArticles(): Promise<Article[]> {
 	if (articlesCache) return articlesCache
 
 	try {
-		const postsResponse = await fetch(urlJoin(wordpressApi, 'posts'), {
+		const postsResponse = await fetch(urlJoin(wordpressRestApi, 'posts'), {
 			headers: { 'Content-Type': 'application/json' },
 		})
 
@@ -47,7 +47,7 @@ export async function getArticles(): Promise<Article[]> {
 				if (!post.featured_media) return article
 
 				try {
-					const mediaResponse = await fetch(urlJoin(wordpressApi, 'media', post.featured_media), {
+					const mediaResponse = await fetch(urlJoin(wordpressRestApi, 'media', post.featured_media), {
 						headers: { 'Content-Type': 'application/json' },
 					})
 
