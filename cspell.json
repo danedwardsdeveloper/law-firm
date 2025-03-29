@@ -1,11 +1,9 @@
 {
-  "ignorePaths": [
-    "pnpm-lock.yaml",
-    ".dockerignore",
-    ".gitignore",
-    "Dockerfile"
-  ],
-  "words": [
-    "featuredmedia"
-  ]
+	"ignorePaths": [
+		"pnpm-lock.yaml",
+		".dockerignore",
+		".gitignore",
+		"Dockerfile"
+	],
+	"words": ["featuredmedia", "jewson"]
 }
