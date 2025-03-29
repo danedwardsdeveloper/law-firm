@@ -1,3 +1,5 @@
+import 'dotenv/config' // For tsx commands only
+
 export function requireVariable(name: string): string {
 	if (typeof window !== 'undefined') {
 		throw new Error('Browser attempting to import a private environment variable')
