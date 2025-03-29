@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 }
 
 export default function TeamLayout({ children }: { children: ReactNode }) {
-	return <>{children}</>
+	return <div className="mx-4 sm:mx-12 lg:mx-0">{children}</div>
 }

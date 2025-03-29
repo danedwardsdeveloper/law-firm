@@ -1,17 +1,13 @@
+import type { TeamMember } from '@/types/definitions/teamMember'
+import Image from 'next/image'
 import Link from 'next/link'
 
-export interface PersonCardProps {
-	name: string
-	specialty: string
-	slug: string
-}
-
-export default function PersonCard({ name, specialty, slug }: PersonCardProps) {
+export default function PersonCard({ teamMember, priority }: { teamMember: TeamMember; priority: boolean }) {
 	return (
-		<Link href={`/team/${slug}`}>
-			<h2 className="text-xl font-medium">{name}</h2>
-			<p>{specialty}</p>
-			<div className="w-full aspect-square bg-blue-100 rounded-sm" />
+		<Link href={`/team/${teamMember.slug}`}>
+			<h2 className="text-xl font-medium">{teamMember.title}</h2>
+			<p className="mb-2">{teamMember.role}</p>
+			<Image src={teamMember.featuredImage} alt={teamMember.metaDescription} width={1200} height={630} priority={priority} />
 		</Link>
 	)
 }
