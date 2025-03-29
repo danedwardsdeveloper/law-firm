@@ -1,7 +1,9 @@
 'use client'
 import { mergeClasses } from '@/library/utilities/browser'
+import { Menu as MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 
 const menuItems = [
 	{
@@ -28,21 +30,62 @@ const menuItems = [
 
 export default function Menu() {
 	const pathname = usePathname()
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+	const toggleMobileMenuOpen = () => {
+		setMobileMenuOpen((current) => !current)
+	}
 
 	return (
-		<nav className="w-full flex justify-between py-5 px-12 border-b-2 border-zinc-200 text-xl">
-			<Link href="/" className="font-bold">
-				Archer Finch Legal
-			</Link>
-			<ul className="flex gap-x-8">
-				{menuItems.map((item) => (
-					<li key={item.href}>
-						<Link href={item.href} className={mergeClasses('underline-offset-4', pathname.includes(item.href) && ' underline')}>
-							{item.display}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</nav>
+		<>
+			<nav data-component="MobileMenu" className="w-full lg:hidden  py-2 px-4 border-b-2 border-zinc-100 text-xl">
+				<div className="flex items-center justify-between">
+					<Link href="/" className="font-bold">
+						Archer Finch Legal
+					</Link>
+					<MenuIcon className="size-7" onClick={toggleMobileMenuOpen} />
+				</div>
+				{mobileMenuOpen && (
+					<ul className="flex flex-col gap-y-6 mt-6">
+						{menuItems.map((item) => (
+							<li key={item.href}>
+								<Link
+									href={item.href}
+									className={mergeClasses('underline-offset-4 font-medium', pathname.includes(item.href) && ' underline')}
+								>
+									{item.display}
+								</Link>
+							</li>
+						))}
+						<button type="button" className="bg-green-300 px-4 py-2 rounded-lg font-bold">
+							Contact us
+						</button>
+					</ul>
+				)}
+			</nav>
+			<nav
+				data-component="DesktopMenu"
+				className="w-full hidden lg:flex items-center justify-between py-2 px-12 border-b-2 border-zinc-200 text-xl"
+			>
+				<Link href="/" className="font-bold">
+					Archer Finch Legal
+				</Link>
+				<ul className="flex items-center gap-x-8">
+					{menuItems.map((item) => (
+						<li key={item.href}>
+							<Link
+								href={item.href}
+								className={mergeClasses('underline-offset-4 font-medium', pathname.includes(item.href) && ' underline')}
+							>
+								{item.display}
+							</Link>
+						</li>
+					))}
+					<button type="button" className="bg-green-300 px-4 py-2 rounded-lg font-bold">
+						Contact us
+					</button>
+				</ul>
+			</nav>
+		</>
 	)
 }
