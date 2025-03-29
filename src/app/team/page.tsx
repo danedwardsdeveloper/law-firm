@@ -1,7 +1,6 @@
 import { getTeamMembers } from '@/library/cms/getTeamMembers'
 import type { Metadata } from 'next'
-import { Fragment } from 'react'
-import PersonCard from './PersonCard'
+import TeamMemberCard from './TeamMemberCard'
 
 export const metadata: Metadata = {
 	title: 'Team members | Archer Finch Legal, intellectual property lawyers',
@@ -20,10 +19,7 @@ export default async function TeamPage() {
 			<h1>Team</h1>
 			<div className="grid grid-cols-2 gap-8">
 				{teamMembersData.map((teamMember, index) => (
-					<Fragment key={teamMember.slug}>
-						<PersonCard teamMember={teamMember} priority={index < 2} />
-						<p>{teamMember.featuredImage}</p>
-					</Fragment>
+					<TeamMemberCard key={teamMember.slug} teamMember={teamMember} priority={index < 2} />
 				))}
 			</div>
 		</>
