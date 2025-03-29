@@ -37,7 +37,7 @@ export default function Menu() {
 			<ul className="flex gap-x-8">
 				{menuItems.map((item) => (
 					<li key={item.href}>
-						<Link href={item.href} className={mergeClasses('underline-offset-4', pathname === item.href && ' underline')}>
+						<Link href={item.href} className={mergeClasses('underline-offset-4', pathname.includes(item.href) && ' underline')}>
 							{item.display}
 						</Link>
 					</li>
