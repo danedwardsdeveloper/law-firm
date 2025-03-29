@@ -17,7 +17,7 @@ export default async function TeamPage() {
 	return (
 		<>
 			<h1>Team</h1>
-			<div className="grid grid-cols-2 gap-8">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
 				{teamMembersData.map((teamMember, index) => (
 					<TeamMemberCard key={teamMember.slug} teamMember={teamMember} priority={index < 2} />
 				))}
