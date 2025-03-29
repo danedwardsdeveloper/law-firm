@@ -7,7 +7,7 @@ import Menu from '@/components/Menu'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-	title: 'Archer Finch Legal',
+	title: '%s | Archer Finch Legal',
 	metadataBase: new URL(dynamicBaseURL),
 	description: 'Site description',
 	alternates: {
@@ -30,7 +30,7 @@ export default function RootLayout({
 			<body className="flex flex-col w-full min-h-screen">
 				<Providers>
 					<Menu />
-					<div className="max-w-4xl w-full mx-auto mt-12">{children}</div>
+					<div className="max-w-4xl w-full mx-auto mt-12 mb-20">{children}</div>
 				</Providers>
 			</body>
 		</html>
