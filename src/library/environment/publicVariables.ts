@@ -5,7 +5,7 @@ export const isDevelopment = process.env.NODE_ENV === 'development'
 
 export const siteIsLaunched = false
 
-export const bareDomain = 'bare-domain.fly.dev'
+export const bareDomain = 'archer-finch-legal.vercel.app'
 export const productionBaseURL = `https://${bareDomain}`
 export const developmentBaseURL = 'http://localhost:3000'
 export const dynamicBaseURL = isProduction ? productionBaseURL : developmentBaseURL
