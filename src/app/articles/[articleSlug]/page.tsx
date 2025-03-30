@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 	if (!article) throw new Error('Article not found')
 
+	// Lots of ToDos here
 	return {
 		title: `${article.title} | Archer Finch Legal`,
 		description: article.excerpt,
@@ -33,7 +34,7 @@ export async function generateStaticParams(): StaticParams {
 	}))
 }
 
-export default async function TeamMemberPage({ params }: { params: Params }) {
+export default async function ArticlePage({ params }: { params: Params }) {
 	const articleSlug = (await params).articleSlug
 	const article = await getArticleBySlug(articleSlug)
 
