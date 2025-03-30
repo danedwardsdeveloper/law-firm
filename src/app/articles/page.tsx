@@ -3,6 +3,7 @@ import ArticleCard from './ArticleCard'
 
 export default async function ArticlesPage() {
 	const allArticles = await getArticles()
+
 	return (
 		<>
 			<h1>Articles</h1>
