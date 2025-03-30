@@ -7,15 +7,13 @@ import { wordpressMedia } from '../environment/publicVariables'
 import logger from '../logger'
 import { copyImageToApp } from './copyImageToApp'
 
-interface DownloadImageOptions {
-	imageFileName: string
-	saveToPublic?: boolean
-	saveToApp?: boolean
-}
-
-export async function downloadImage({ imageFileName, saveToPublic = false, saveToApp = true }: DownloadImageOptions) {
-	const publicDir = path.join(process.cwd(), 'public', 'images')
-	const appDir = path.join(process.cwd(), 'src', 'app')
+export async function downloadImage({
+	imageFileName,
+	saveToPublic = false,
+	saveToApp = true,
+}: { imageFileName: string; saveToPublic: boolean; saveToApp: boolean }) {
+	const publicDir = path.join(process.cwd(), 'public', 'images', 'wordpress')
+	const appDir = path.join(process.cwd(), 'src', 'app', 'wordpress')
 
 	const publicPath = path.join(publicDir, imageFileName)
 	const appPath = path.join(appDir, imageFileName)
@@ -23,12 +21,7 @@ export async function downloadImage({ imageFileName, saveToPublic = false, saveT
 	const publicExists = saveToPublic && fs.existsSync(publicPath)
 	const appExists = saveToApp && fs.existsSync(appPath)
 
-	if ((saveToPublic && publicExists) || (saveToApp && appExists)) {
-		return {
-			publicPath: saveToPublic ? `/images/${imageFileName}` : null,
-			appPath: saveToApp ? `/images/${imageFileName}` : null,
-		}
-	}
+	if ((saveToPublic && publicExists) || (saveToApp && appExists)) return
 
 	try {
 		const response = await axios({
@@ -46,7 +39,8 @@ export async function downloadImage({ imageFileName, saveToPublic = false, saveT
 
 		fs.writeFileSync(publicPath, imageBuffer)
 
-		// Then save to app if needed
+		// Then copy over to app if needed
+		// Next.js doesn't allow you to write directly inside /src/app so this is a workaround
 		if (saveToApp) copyImageToApp(imageFileName)
 
 		// Then delete the public file if not needed

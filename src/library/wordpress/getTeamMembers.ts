@@ -37,7 +37,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 				role: teamMember.role,
 				metaTitle: teamMember.meta_title,
 				metaDescription: teamMember.meta_desc,
-				featuredImage: `/images/${imageFileName}`,
+				featuredImage: `/images/wordpress/${imageFileName}`,
 				content: teamMember.content.rendered,
 			})
 		}
