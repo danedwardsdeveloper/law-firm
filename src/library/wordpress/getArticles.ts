@@ -2,6 +2,7 @@ import type { Article } from '@/types'
 import urlJoin from 'proper-url-join'
 import { wordpressRestApi } from '../environment/publicVariables'
 import logger from '../logger'
+import { downloadImage } from './downloadImage'
 
 let articlesCache: Article[] | null = null
 
@@ -34,7 +35,10 @@ export async function getArticles(): Promise<Article[]> {
 			postsData.map(async (post: any, index: number) => {
 				const article = articlesWithoutImages[index]
 
-				if (!post.featured_media) return article
+				if (!post.featured_media) {
+					logger.info('getArticles: No featured image found for ', post.slug)
+					return article
+				}
 
 				try {
 					const mediaResponse = await fetch(urlJoin(wordpressRestApi, 'media', post.featured_media), {
@@ -45,9 +49,16 @@ export async function getArticles(): Promise<Article[]> {
 
 					const mediaData = await mediaResponse.json()
 
+					await downloadImage({
+						imageFileName: mediaData.media_details.file,
+						saveToPublic: true,
+						saveToApp: true,
+						subFolder: 'articles',
+					})
+
 					return {
 						...article,
-						featuredImage: mediaData.source_url,
+						featuredImage: `/images/wordpress/articles/${mediaData.media_details.file}`,
 					}
 				} catch (error) {
 					logger.error(`Error fetching media for post ${post.id}:`, error)
@@ -56,7 +67,9 @@ export async function getArticles(): Promise<Article[]> {
 			}),
 		)
 
-		articlesCache = articlesData
+		const deepCopy = JSON.parse(JSON.stringify(articlesData))
+		articlesCache = deepCopy
+
 		return articlesData
 	} catch (error) {
 		logger.error('getArticles error: ', error)

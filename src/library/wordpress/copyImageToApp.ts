@@ -6,13 +6,14 @@ import logger from '../logger'
  * Copies an image from /public to /src/app so it can be optimised automatically
  * Writing files directly to /src/app is not allowed in Next.js
  */
-export async function copyImageToApp(fileName: string): Promise<boolean> {
-	const sourceFile = path.join(process.cwd(), 'public', 'images', 'wordpress', fileName)
-	const targetFile = path.join(process.cwd(), 'src', 'app', 'images', 'wordpress', fileName)
+export async function copyImageToApp(fileName: string, subFolder: string): Promise<boolean> {
+	const functionSignature = 'copyImageToApp'
+	const sourceFile = path.join(process.cwd(), 'public', 'images', 'wordpress', subFolder, fileName)
+	const targetFile = path.join(process.cwd(), 'src', 'app', 'images', 'wordpress', subFolder, fileName)
 
 	try {
 		if (!fs.existsSync(sourceFile)) {
-			logger.error(`Source file does not exist: ${sourceFile}`)
+			logger.error(functionSignature, `Source file does not exist: ${sourceFile}`)
 			return false
 		}
 
@@ -26,7 +27,7 @@ export async function copyImageToApp(fileName: string): Promise<boolean> {
 		fs.writeFileSync(targetFile, fileContent)
 		return true
 	} catch (error) {
-		logger.error('Error moving file:', error)
+		logger.error(functionSignature, 'Error moving file:', error)
 		return false
 	}
 }

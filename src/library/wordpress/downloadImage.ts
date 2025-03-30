@@ -9,11 +9,12 @@ import { copyImageToApp } from './copyImageToApp'
 
 export async function downloadImage({
 	imageFileName,
+	subFolder,
 	saveToPublic = false,
 	saveToApp = true,
-}: { imageFileName: string; saveToPublic: boolean; saveToApp: boolean }) {
-	const publicDir = path.join(process.cwd(), 'public', 'images', 'wordpress')
-	const appDir = path.join(process.cwd(), 'src', 'app', 'wordpress')
+}: { imageFileName: string; subFolder: string; saveToPublic: boolean; saveToApp: boolean }) {
+	const publicDir = path.join(process.cwd(), 'public', 'images', 'wordpress', subFolder)
+	const appDir = path.join(process.cwd(), 'src', 'app', 'images', 'wordpress', subFolder)
 
 	const publicPath = path.join(publicDir, imageFileName)
 	const appPath = path.join(appDir, imageFileName)
@@ -41,7 +42,7 @@ export async function downloadImage({
 
 		// Then copy over to app if needed
 		// Next.js doesn't allow you to write directly inside /src/app so this is a workaround
-		if (saveToApp) copyImageToApp(imageFileName)
+		if (saveToApp) copyImageToApp(imageFileName, subFolder)
 
 		// Then delete the public file if not needed
 		if (!saveToPublic) {

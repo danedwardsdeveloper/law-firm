@@ -8,7 +8,7 @@ import { downloadImage } from './downloadImage'
 let teamMembersCache: TeamMember[] | null = null
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
-	if (teamMembersCache) return teamMembersCache
+	if (teamMembersCache && teamMembersCache.length > 0) return teamMembersCache
 
 	try {
 		const response = await fetch(urlJoin(wordpressRestApi, 'team_member'), {
@@ -26,6 +26,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 
 			await downloadImage({
 				imageFileName,
+				subFolder: 'team-members',
 				saveToApp: true,
 				saveToPublic: true,
 			})
@@ -37,7 +38,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 				role: teamMember.role,
 				metaTitle: teamMember.meta_title,
 				metaDescription: teamMember.meta_desc,
-				featuredImage: `/images/wordpress/${imageFileName}`,
+				featuredImage: `/images/wordpress/team-members/${imageFileName}`,
 				content: teamMember.content.rendered,
 			})
 		}
@@ -60,8 +61,10 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 			return a.title.localeCompare(b.title)
 		})
 
-		teamMembersCache = sortedTeamMembers
-		return teamMembersData
+		const deepCopy = JSON.parse(JSON.stringify(sortedTeamMembers))
+		teamMembersCache = deepCopy
+
+		return sortedTeamMembers
 	} catch (error) {
 		logger.error('getTeamMembers error: ', error)
 		return []
