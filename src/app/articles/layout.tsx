@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 }
 
 export default function ArticlesLayout({ children }: { children: ReactNode }) {
-	return <div className="mx-4 sm:mx-12 lg:mx-0">{children}</div>
+	return <div className="">{children}</div>
 }
