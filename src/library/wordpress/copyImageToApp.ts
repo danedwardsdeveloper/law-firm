@@ -7,8 +7,8 @@ import logger from '../logger'
  * Writing files directly to /src/app is not allowed in Next.js
  */
 export async function copyImageToApp(fileName: string): Promise<boolean> {
-	const sourceFile = path.join(process.cwd(), 'public', 'images', fileName)
-	const targetFile = path.join(process.cwd(), 'src', 'app', 'images', fileName)
+	const sourceFile = path.join(process.cwd(), 'public', 'images', 'wordpress', fileName)
+	const targetFile = path.join(process.cwd(), 'src', 'app', 'images', 'wordpress', fileName)
 
 	try {
 		if (!fs.existsSync(sourceFile)) {
