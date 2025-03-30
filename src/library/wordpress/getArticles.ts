@@ -1,17 +1,7 @@
+import type { Article } from '@/types'
 import urlJoin from 'proper-url-join'
 import { wordpressRestApi } from '../environment/publicVariables'
 import logger from '../logger'
-
-export type Article = {
-	id: string
-	title: string
-	slug: string
-	excerpt: string
-	content: string
-	date: string
-	featuredImage?: string
-	categories: number[]
-}
 
 let articlesCache: Article[] | null = null
 
