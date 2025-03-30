@@ -4,6 +4,7 @@ import './styles.tailwind.css'
 import Menu from '@/components/Menu'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import type { ReactNode } from 'react'
+import socialImage from '../../public/images/archer-finch-legal.png'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
 	subsets: ['latin'],
@@ -11,12 +12,28 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 	variable: '--font-plus-jakarta-sans',
 })
 
+const metatitle = 'Archer Finch Legal | Intellectual property lawyers, London'
+
+const metadescription =
+	'Archer Finch Legal provides expert intellectual property services in London, offering practical advice on trademarks, copyright, patents and IP litigation.'
+
+if (!socialImage) {
+	throw new Error('Layout.tsx: social image missing')
+}
+
 export const metadata: Metadata = {
-	title: 'Archer Finch Legal',
+	title: metatitle,
 	metadataBase: new URL(dynamicBaseURL),
-	description: 'Site description',
+	description: metadescription,
 	openGraph: {
-		images: ['/images/papers.png'],
+		images: [
+			{
+				url: '/images/archer-finch-legal.png',
+				height: 630,
+				width: 1200,
+				alt: metatitle,
+			},
+		],
 	},
 	alternates: {
 		canonical: dynamicBaseURL,
