@@ -1,4 +1,4 @@
-import { getTeamMembers } from '@/library/cms/getTeamMembers'
+import { getTeamMembers } from '@/library/wordpress/getTeamMembers'
 import TeamMemberCard from './team/TeamMemberCard'
 
 export default async function HomePage() {

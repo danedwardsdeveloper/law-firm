@@ -1,4 +1,4 @@
-import type { TeamMember } from '@/types/definitions/teamMember'
+import type { TeamMember } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 

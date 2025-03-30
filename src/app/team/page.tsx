@@ -1,4 +1,4 @@
-import { getTeamMembers } from '@/library/cms/getTeamMembers'
+import { getTeamMembers } from '@/library/wordpress/getTeamMembers'
 import type { Metadata } from 'next'
 import TeamMemberCard from './TeamMemberCard'
 

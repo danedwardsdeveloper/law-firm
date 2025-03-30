@@ -1,8 +1,8 @@
 import path from 'node:path'
-import type { TeamMember } from '@/types/definitions/teamMember'
+import logger from '@/library/logger'
+import type { TeamMember } from '@/types'
 import urlJoin from 'proper-url-join'
 import { wordpressRestApi } from '../environment/publicVariables'
-import logger from '../logger'
 import { downloadImage } from './downloadImage'
 
 let teamMembersCache: TeamMember[] | null = null

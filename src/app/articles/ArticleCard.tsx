@@ -1,4 +1,4 @@
-import type { Article } from '@/library/cms/getArticles'
+import type { Article } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 

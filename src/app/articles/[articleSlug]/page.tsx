@@ -1,4 +1,4 @@
-import { getArticleBySlug, getArticles } from '@/library/cms/getArticles'
+import { getArticleBySlug, getArticles } from '@/library/wordpress/getArticles'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
