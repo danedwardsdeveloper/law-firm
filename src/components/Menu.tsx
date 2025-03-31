@@ -4,15 +4,12 @@ import { Menu as MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import CTA from './CTA'
 
 const menuItems = [
 	{
 		display: 'Services',
 		href: '/services',
-	},
-	{
-		display: 'About',
-		href: '/about',
 	},
 	{
 		display: 'Team',
@@ -57,9 +54,7 @@ export default function Menu() {
 								</Link>
 							</li>
 						))}
-						<button type="button" className="bg-green-300 px-4 py-2 rounded-lg font-bold">
-							Contact us
-						</button>
+						<CTA />
 					</ul>
 				)}
 			</nav>
@@ -81,9 +76,7 @@ export default function Menu() {
 							</Link>
 						</li>
 					))}
-					<button type="button" className="bg-green-300 px-4 py-2 rounded-lg font-bold">
-						Contact us
-					</button>
+					<CTA />
 				</ul>
 			</nav>
 		</>
