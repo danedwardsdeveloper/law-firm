@@ -12,6 +12,8 @@
 		"deploy": "vercel deploy --prebuilt"
 	},
 	"dependencies": {
+		"@headlessui/react": "^2.2.0",
+		"@heroicons/react": "^2.2.0",
 		"@types/proper-url-join": "^2.1.5",
 		"clsx": "^2.1.1",
 		"humanize-plus": "^1.8.2",
