@@ -54,9 +54,9 @@ export default function Menu() {
 								</Link>
 							</li>
 						))}
-						<CTA />
 					</ul>
 				)}
+				<CTA />
 			</nav>
 			<nav
 				data-component="DesktopMenu"
@@ -76,8 +76,8 @@ export default function Menu() {
 							</Link>
 						</li>
 					))}
-					<CTA />
 				</ul>
+				<CTA />
 			</nav>
 		</>
 	)
