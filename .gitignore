@@ -27,5 +27,6 @@ yarn-error.log*
 
 *.tsbuildinfo
 next-env.d.ts
+
 /public/images/wordpress
 /src/app/images/wordpress
