@@ -1,8 +1,8 @@
 import path from 'node:path'
+import { wordpressRestApi } from '@/library/environment/publicVariables'
 import logger from '@/library/logger'
 import type { TeamMember } from '@/types'
 import urlJoin from 'proper-url-join'
-import { wordpressRestApi } from '../environment/publicVariables'
 import { downloadImage } from './downloadImage'
 
 let teamMembersCache: TeamMember[] | null = null
@@ -27,8 +27,6 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 			await downloadImage({
 				imageFileName,
 				subFolder: 'team-members',
-				saveToApp: true,
-				saveToPublic: true,
 			})
 
 			teamMembersData.push({

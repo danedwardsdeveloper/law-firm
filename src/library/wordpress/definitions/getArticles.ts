@@ -1,7 +1,7 @@
+import { wordpressRestApi } from '@/library/environment/publicVariables'
+import logger from '@/library/logger'
 import type { Article } from '@/types'
 import urlJoin from 'proper-url-join'
-import { wordpressRestApi } from '../environment/publicVariables'
-import logger from '../logger'
 import { downloadImage } from './downloadImage'
 
 let articlesCache: Article[] | null = null
@@ -51,8 +51,6 @@ export async function getArticles(): Promise<Article[]> {
 
 					await downloadImage({
 						imageFileName: mediaData.media_details.file,
-						saveToPublic: true,
-						saveToApp: true,
 						subFolder: 'articles',
 					})
 
