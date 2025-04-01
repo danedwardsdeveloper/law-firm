@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import logger from '../logger'
+import logger from '@/library/logger'
 
 /**
  * @deprecated Not needed, as Next.js does actually optimise images in the /public folder. I thought they had to be inside /app for some reason
