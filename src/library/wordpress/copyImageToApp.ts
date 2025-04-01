@@ -3,6 +3,7 @@ import path from 'node:path'
 import logger from '../logger'
 
 /**
+ * @deprecated Not needed, as Next.js does actually optimise images in the /public folder. I thought they had to be inside /app for some reason
  * Copies an image from /public to /src/app so it can be optimised automatically
  * Writing files directly to /src/app is not allowed in Next.js
  */
