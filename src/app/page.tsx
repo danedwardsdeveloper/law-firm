@@ -1,8 +1,7 @@
 import Hero from '@/components/Hero'
 import ServiceCard from '@/components/ServiceCard'
 import Testimonials from '@/components/Testimonials'
-import { getServices } from '@/library/wordpress/getServices'
-import { getTeamMembers } from '@/library/wordpress/getTeamMembers'
+import { getTeamMembers } from '@/library/wordpress'
 import TeamMemberCard from './team/TeamMemberCard'
 import { testimonials } from './testimonials/data'
 
