@@ -12,8 +12,8 @@ export default function Hero() {
 		<>
 			<div className="flex flex-col md:flex-row md:justify-between mb-12 md:mb-0">
 				<div className="mb-12">
-					<span className="block mb-4">Protect your intellectual property</span>
-					<h1 className="text-3xl font-semibold mb-12">Secure your most valuable assets</h1>
+					<span className="block mb-4 text-xl font-medium">Protect your intellectual property</span>
+					<h1 className="text-4xl font-bold mb-12">Secure your most valuable assets</h1>
 					<ul className="flex flex-col gap-y-3">
 						{bullets.map((bullet) => (
 							<li key={bullet} className="flex">
