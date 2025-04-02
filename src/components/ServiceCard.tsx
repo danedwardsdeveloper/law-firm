@@ -10,7 +10,7 @@ export default function ServiceCard({
 		<li>
 			<Link href={`/services/${slug}`} className="flex flex-col gap-y-2 hover:opacity-80 transition-opacity duration-300">
 				<h2 className="text-2xl font-medium">{serviceType}</h2>
-				<Image src={featuredImage.url} alt="" height={1920} width={1281} priority={priority} className="w-full max-w-md" />
+				<Image src={featuredImage.url} alt="" height={1200} width={630} priority={priority} className="w-full max-w-md" />
 			</Link>
 		</li>
 	)

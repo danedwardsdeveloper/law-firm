@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 				{
 					url: serviceData.featuredImage.url,
 					alt: serviceData.featuredImage.alt,
-					height: 1280,
-					width: 1920,
+					height: 1200,
+					width: 630,
 				},
 			],
 		},
