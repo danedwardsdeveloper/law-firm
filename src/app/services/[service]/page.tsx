@@ -1,4 +1,8 @@
-import { getServiceBySlug } from '@/library/cms/payload/getServices'
+import { getServiceBySlug, getServices } from '@/library/cms/payload/getServices'
+import { titleMetadataPhrases } from '@/library/constants'
+import { optimiseTitle } from '@/library/utilities/server'
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
@@ -6,8 +10,39 @@ type ResolvedParams = { service: string }
 type StaticParams = ResolvedParams[]
 type Params = Promise<ResolvedParams>
 
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+	const serviceSlug = (await params).service
+	const serviceData = await getServiceBySlug(serviceSlug)
+
+	if (!serviceData) notFound()
+
+	return {
+		title: optimiseTitle({
+			base: serviceData.serviceType,
+			additionalPhraseOptions: titleMetadataPhrases,
+		}),
+		openGraph: {
+			images: [
+				{
+					url: serviceData.featuredImage.url,
+					alt: serviceData.featuredImage.alt,
+					height: 1280,
+					width: 1920,
+				},
+			],
+		},
+		description: serviceData.metaDescription,
+		alternates: {
+			canonical: `/services/${serviceData.slug}`,
+		},
+	}
+}
+
 export async function generateStaticParams(): Promise<StaticParams> {
-	return [{ service: 'IP due diligence' }]
+	const allServices = await getServices()
+	return allServices.map((service) => ({
+		service: service.slug,
+	}))
 }
 
 export default async function ServicePage({ params }: { params: Params }) {
@@ -16,18 +51,14 @@ export default async function ServicePage({ params }: { params: Params }) {
 
 	if (!serviceData) return notFound()
 
-	const { title, content, photo } = serviceData
+	const { tagline, serviceType, content, featuredImage } = serviceData
 
 	return (
-		<>
-			<span className="font-bold text-3xl mb-6">{/* First paragraph here */}</span>
-			<h1 className="text-xl font-medium mb-12">{title}</h1>
-			<Image src={photo} alt="" width={1920} height={1280} />
-			<div
-				className="flex flex-col gap-y-4 leading-7 text-zinc-700 max-w-prose text-lg"
-				// biome-ignore lint/security/noDangerouslySetInnerHtml:
-				dangerouslySetInnerHTML={{ __html: content }}
-			/>
-		</>
+		<div className="max-w-prose">
+			<h1 className="text-xl font-medium mb-4">{serviceType}</h1>
+			<span className="block font-bold text-4xl mb-6 text-balance">{tagline}</span>
+			<Image src={featuredImage.url} alt="" width={1920} height={1280} className="max-w-md rounded-md mb-12" />
+			<RichText data={content} className="flex flex-col gap-y-4" />
+		</div>
 	)
 }
