@@ -1,9 +1,9 @@
 import { dynamicBaseURL } from '@/library/environment/publicVariables'
 import type { Metadata, Viewport } from 'next'
 import './styles.tailwind.css'
-import ContactForm from '@/components/ContactForm'
 import Menu from '@/components/Menu'
 import Provider from '@/components/Provider'
+import ContactFormModal from '@/components/contactFormModal'
 import { mergeClasses } from '@/library/utilities/browser'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
@@ -59,7 +59,7 @@ export default function RootLayout({
 			<body className="flex flex-col w-full min-h-screen bg-amber-50">
 				<Provider>
 					<Menu />
-					<ContactForm />
+					<ContactFormModal />
 					<div className="max-w-4xl w-full mx-auto mt-12 mb-20 px-4 lg:px-0">{children}</div>
 				</Provider>
 				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
