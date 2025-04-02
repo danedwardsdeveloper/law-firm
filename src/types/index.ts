@@ -1,5 +1,6 @@
 export * from './definitions/logger'
 export * from './definitions/article'
 export * from './definitions/teamMember'
-export * from './definitions/service'
 export * from './definitions/mediaDetail'
+export * from './definitions/payload'
+export * from './definitions/services'
