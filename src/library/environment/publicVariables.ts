@@ -6,6 +6,9 @@ export const isDevelopment = process.env.NODE_ENV === 'development'
 export const wordpressRestApi = 'http://localhost:8000/wp-json/wp/v2'
 export const wordpressMedia = 'http://localhost:8000/wp-content/uploads'
 
+export const payloadDatabaseURL = 'postgresql://localhost/law_firm'
+export const payloadCmsBase = 'http://localhost:4000'
+
 export const siteIsLaunched = false
 
 export const bareDomain = 'archer-finch-legal.vercel.app'
