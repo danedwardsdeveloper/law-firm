@@ -1,8 +1,8 @@
 import { wordpressRestApi } from '@/library/environment/publicVariables'
 import logger from '@/library/logger'
+import { downloadImage } from '@/library/utilities/server'
 import type { Article } from '@/types'
 import urlJoin from 'proper-url-join'
-import { downloadImage } from './downloadImage'
 
 let articlesCache: Article[] | null = null
 
@@ -30,6 +30,7 @@ export async function getArticles(): Promise<Article[]> {
 			categories: item.categories,
 		}))
 
+		// ToDo: refactor to for...of
 		const articlesData = await Promise.all(
 			// biome-ignore lint/suspicious/noExplicitAny:
 			postsData.map(async (post: any, index: number) => {
@@ -51,6 +52,7 @@ export async function getArticles(): Promise<Article[]> {
 
 					await downloadImage({
 						imageFileName: mediaData.media_details.file,
+						cms: 'wordpress',
 						subFolder: 'articles',
 					})
 
