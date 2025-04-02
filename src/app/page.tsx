@@ -1,7 +1,8 @@
 import Hero from '@/components/Hero'
 import ServiceCard from '@/components/ServiceCard'
 import Testimonials from '@/components/Testimonials'
-import { getTeamMembers } from '@/library/wordpress'
+import { getServices } from '@/library/cms/payload/getServices'
+import { getTeamMembers } from '@/library/cms/wordpress'
 import TeamMemberCard from './team/TeamMemberCard'
 import { testimonials } from './testimonials/data'
 
@@ -19,7 +20,7 @@ export default async function HomePage() {
 				<h1 className="text-4xl font-bold mb-12">Services</h1>
 				<ul className="flex flex-col gap-y-16">
 					{allServices.slice(0, 2).map((service, index) => (
-						<ServiceCard key={`${service.title}-${index}`} service={service} priority={index < 2} />
+						<ServiceCard key={service.id} service={service} priority={index < 2} />
 					))}
 				</ul>
 			</section>
