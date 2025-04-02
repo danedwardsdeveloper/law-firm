@@ -1,4 +1,4 @@
-import { getArticles } from '@/library/wordpress'
+import { getArticles } from '@/library/cms/wordpress'
 import ArticleCard from './ArticleCard'
 
 export default async function ArticlesPage() {

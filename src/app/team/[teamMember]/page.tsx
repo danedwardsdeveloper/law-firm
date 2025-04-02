@@ -1,4 +1,4 @@
-import { getTeamMemberBySlug, getTeamMembers } from '@/library/wordpress'
+import { getTeamMemberBySlug, getTeamMembers } from '@/library/cms/wordpress'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
