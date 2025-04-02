@@ -1,5 +1,5 @@
 import type { StaticImageData } from 'next/image'
-import type { ServiceName } from './service'
+import type { ServiceName } from './services'
 
 export interface Testimonial {
 	service: ServiceName
