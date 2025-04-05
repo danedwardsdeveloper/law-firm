@@ -1,6 +1,7 @@
 import { initialiseStringOptimiser } from './definitions/stringOptimiser'
 export * from './definitions/deReference'
 export * from './definitions/downloadImage'
+export * from './definitions/initialiseDevelopmentLogger'
 
 export const optimiseTitle = initialiseStringOptimiser({
 	minimumLength: 50,
