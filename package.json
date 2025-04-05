@@ -12,6 +12,7 @@
 		"deploy": "vercel deploy --prebuilt"
 	},
 	"dependencies": {
+		"@aws-sdk/client-ses": "^3.782.0",
 		"@headlessui/react": "^2.2.0",
 		"@heroicons/react": "^2.2.0",
 		"@hookform/resolvers": "^5.0.1",
