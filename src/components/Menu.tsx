@@ -37,10 +37,10 @@ export default function Menu() {
 		<>
 			<nav data-component="MobileMenu" className="w-full lg:hidden  py-2 px-4 border-b-2 border-zinc-100 text-xl">
 				<div className="flex items-center justify-between">
-					<Link href="/" className="font-bold">
+					<Link href="/" className="font-bold text-2xl p-1 rounded-md active:bg-amber-100 transition-colors duration-300">
 						Archer Finch Legal
 					</Link>
-					<MenuIcon className="size-7" onClick={toggleMobileMenuOpen} />
+					<MenuIcon className="size-10 p-1 active:bg-amber-100 transition-colors duration-300" onClick={toggleMobileMenuOpen} />
 				</div>
 				{mobileMenuOpen && (
 					<ul className="flex flex-col gap-y-6 mt-6">
@@ -48,14 +48,18 @@ export default function Menu() {
 							<li key={item.href}>
 								<Link
 									href={item.href}
-									className={mergeClasses('underline-offset-4 font-medium', pathname.includes(item.href) && ' underline')}
+									onClick={() => setMobileMenuOpen(false)}
+									className={mergeClasses(
+										'block underline-offset-4 font-medium p-1 active:bg-amber-100 rounded-md w-full',
+										pathname.includes(item.href) && ' underline',
+									)}
 								>
 									{item.display}
 								</Link>
 							</li>
 						))}
 						<li>
-							<CTA />
+							<CTA classes="w-full" />
 						</li>
 					</ul>
 				)}
