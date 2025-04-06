@@ -54,7 +54,7 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 				height={630}
 				priority
 				sizes="421"
-				className="max-w-xl rounded-md mb-12"
+				className="w-full max-w-xl rounded-md mb-12"
 			/>
 			<div
 				className="flex flex-col gap-y-4 leading-7 text-zinc-700 max-w-prose text-lg"

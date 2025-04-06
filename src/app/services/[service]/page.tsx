@@ -57,7 +57,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 		<div className="max-w-prose">
 			<h1 className="text-xl font-medium mb-4">{serviceType}</h1>
 			<span className="block font-bold text-4xl mb-6 text-balance">{tagline}</span>
-			<Image src={featuredImage.url} alt="" width={1920} height={1280} className="max-w-md rounded-md mb-12" />
+			<Image src={featuredImage.url} alt="" width={1920} height={1280} className="w-full max-w-md rounded-md mb-12" />
 			<RichText data={content} className="flex flex-col gap-y-4" />
 		</div>
 	)
