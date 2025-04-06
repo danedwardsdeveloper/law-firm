@@ -1,4 +1,5 @@
 import { SESClient, SendEmailCommand, type SendEmailRequest } from '@aws-sdk/client-ses'
+import { isDevelopment } from './environment/publicVariables'
 import { awsAccessKeyId, awsSecretAccessKey, myPersonalEmail } from './environment/serverVariables'
 import logger from './logger'
 
@@ -32,6 +33,11 @@ export async function sendEmail({ subject, body }: { subject: string; body: stri
 				},
 			},
 		},
+	}
+
+	if (isDevelopment) {
+		logger.info('Skipped sending actual email in development')
+		return { sentSuccessfully: true }
 	}
 
 	try {
