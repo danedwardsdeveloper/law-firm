@@ -55,7 +55,7 @@ export default function RootLayout({
 	children: ReactNode
 }>) {
 	return (
-		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900')}>
+		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900 text-base')}>
 			<body className="flex flex-col w-full min-h-screen bg-amber-50">
 				<Provider>
 					<Menu />
