@@ -4,7 +4,7 @@ import { mergeClasses } from '@/library/utilities/browser'
 import { type ContactFormValues, contactFormSchema } from '@/library/validations'
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { type ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useProvider } from '../Provider'
 import Spinner from '../Spinner'
@@ -58,24 +58,23 @@ export default function ContactForm() {
 		}
 	}
 
-	function CloseModalButton() {
-		return (
-			<button
-				type="button"
-				aria-label="Close contact form"
-				onClick={() => setContactFormVisible(false)}
-				className="group transition-colors duration-300 hover:bg-zinc-100 rounded-md p-1 text-zinc-600 hover:text-red-500"
-			>
-				<XCircleIcon className="size-6" aria-hidden="true" />
-			</button>
-		)
-	}
-
-	function FormHeader({ children }: { children: ReactNode }) {
+	function Header() {
 		return (
 			<div className="flex justify-between mb-4">
-				<div className="font-semibold text-xl">{children}</div>
-				<CloseModalButton />
+				<h2 className="text-xl font-semibold">
+					{(() => {
+						if (status === 'success') return <span className="text-green-600">Message sent successfully</span>
+						return 'Contact us'
+					})()}
+				</h2>
+				<button
+					type="button"
+					aria-label="Close contact form"
+					onClick={() => setContactFormVisible(false)}
+					className="group transition-colors duration-300 hover:bg-zinc-100 rounded-md p-1 text-zinc-600 hover:text-red-500"
+				>
+					<XCircleIcon className="size-6" aria-hidden="true" />
+				</button>
 			</div>
 		)
 	}
@@ -85,13 +84,11 @@ export default function ContactForm() {
 
 		return (
 			<div>
-				<FormHeader>
-					<div className="flex gap-x-2 items-center text-green-600">
-						<CheckCircleIcon className="size-6 " aria-hidden="true" />
-						<h3>Message sent successfully</h3>
-					</div>
-				</FormHeader>
-				<p className="mb-6">{`We'll get back to you in one working day.`}</p>
+				<Header />
+				<p>{`We'll get back to you in one working day.`}</p>
+				<div className="flex justify-center text-green-600 my-4">
+					<CheckCircleIcon className="size-16" aria-hidden="true" />
+				</div>
 				<div className="mb-4">
 					<p className="font-medium">{formValues.email}</p>
 					<p>{formValues.message}</p>
@@ -104,9 +101,7 @@ export default function ContactForm() {
 
 	return (
 		<div>
-			<FormHeader>
-				<h2>Contact us</h2>
-			</FormHeader>
+			<Header />
 			<form onSubmit={handleSubmit(onSubmit)} noValidate>
 				{/* Email */}
 				<div className="w-full mb-5">
