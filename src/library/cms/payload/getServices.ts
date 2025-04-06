@@ -19,7 +19,8 @@ export async function getServices(): Promise<Service[]> {
 		})
 
 		if (!response.ok) {
-			throw new Error(`Failed to get services data. Status: ${response.status}, ${response.statusText}`)
+			logger.warn('Fetch services response not okay. Is the Payload server running?')
+			return []
 		}
 
 		const data = await response.json()
@@ -53,15 +54,17 @@ export async function getServices(): Promise<Service[]> {
 		}
 
 		if (processedServices.length === 0) {
-			throw new Error('getServices: no valid services found')
+			logger.warn('No valid services found')
+			return []
 		}
 
 		servicesCache = processedServices
 
 		return servicesCache
 	} catch (error) {
-		const errorMessage = `Error fetching services: ${error instanceof Error ? error.message : String(error)}`
-		throw new Error(errorMessage)
+		const errorMessage = `getServices error: ${error instanceof Error ? error.message : String(error)}`
+		logger.warn(errorMessage)
+		return []
 	}
 }
 
