@@ -5,7 +5,8 @@ export const contactFormSchema = z.object({
 	message: z
 		.string()
 		.min(1, { message: 'Please enter a message' })
-		.max(1000, { message: 'Your message must be less than 1000 characters' }),
+		.max(1000, { message: 'Your message must be less than 1000 characters' })
+		.regex(/^[^<>(){}[\]'"`&|;$]*$/, { message: 'These characters are not allowed: < > ( ) { } [ ] \' " ` & | ; $' }),
 	website: z.string().optional(), // Honeypot
 })
 
