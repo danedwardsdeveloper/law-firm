@@ -6,7 +6,7 @@ export default function ContactDetails() {
 				<br />
 				12 Haymarket Square
 				<br />
-				St. James's
+				{`St. James's`}
 				<br />
 				London, SW1Y 4BP
 			</address>
