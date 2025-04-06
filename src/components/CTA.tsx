@@ -9,7 +9,7 @@ export default function CTA({ classes }: { classes?: string }) {
 			type="button"
 			onClick={() => setContactFormVisible(true)}
 			className={mergeClasses(
-				'bg-green-300 hover:bg-green-400 hover:shadow-md active:shadow-md active:bg-green-500 transition-all duration-300 px-4 py-2 rounded-lg font-bold text-xl',
+				'bg-green-300 hover:bg-green-300 sm:hover:bg-green-400  active:bg-green-400 sm:active:bg-green-500 hover:shadow-md active:shadow-md  transition-all duration-300 px-4 py-2 rounded-lg font-bold text-xl',
 				classes,
 			)}
 		>
