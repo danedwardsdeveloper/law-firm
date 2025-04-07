@@ -4,6 +4,7 @@ import './styles.tailwind.css'
 import Menu from '@/components/Menu'
 import Provider from '@/components/Provider'
 import ContactFormModal from '@/components/contactFormModal'
+import Footer from '@/components/footer'
 import { mergeClasses } from '@/library/utilities/browser'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
@@ -61,6 +62,7 @@ export default function RootLayout({
 					<Menu />
 					<ContactFormModal />
 					<div className="max-w-4xl w-full mx-auto mt-12 mb-20 px-4 lg:px-0">{children}</div>
+					<Footer />
 				</Provider>
 				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
 			</body>
