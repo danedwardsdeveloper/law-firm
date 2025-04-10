@@ -1,6 +1,6 @@
-import Hero from '@/components/Hero'
 import ServiceCard from '@/components/ServiceCard'
 import Testimonials from '@/components/Testimonials'
+import Hero from '@/components/hero'
 import { getPayloadArticles } from '@/library/cms/payload/getArticles'
 import { getServices } from '@/library/cms/payload/getServices'
 import { getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
@@ -15,12 +15,12 @@ export default async function HomePage() {
 
 	return (
 		<main id="main-content">
-			<section className="md:mt-20 mb-40 max-w-4xl w-full mx-auto mt-12 px-4 lg:px-0">
+			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 sm:min-h-[90vh] mt-6 sm:mt-6 mb-20 sm:mb-0">
 				<Hero />
 			</section>
 
 			<div className="bg-cream-100">
-				<section className="max-w-4xl w-full mx-auto px-4 lg:px-0 py-20">
+				<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 py-20">
 					<h2 className="text-4xl font-bold mb-8">Services</h2>
 					<p className="mb-12">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -33,14 +33,14 @@ export default async function HomePage() {
 				</section>
 			</div>
 
-			<section className="mb-20 max-w-4xl w-full mx-auto py-20 px-4 lg:px-0">
+			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 py-20">
 				<h2 className="text-4xl font-bold mb-12">Testimonials</h2>
 				<p className="mb-10">What people have to say about our award-winning IP law firm</p>
 				<Testimonials testimonials={testimonials.slice(0, 2)} />
 			</section>
 
 			<div className="bg-cream-100">
-				<section className="mb-20 max-w-4xl w-full mx-auto py-20 px-4 lg:px-0">
+				<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 py-20">
 					<h2 className="text-4xl font-bold mb-12">Articles</h2>
 					<p className="mb-10">Latest articles about intellectual property</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
@@ -51,7 +51,7 @@ export default async function HomePage() {
 				</section>
 			</div>
 
-			<section className="mb-20 max-w-4xl w-full mx-auto px-4 lg:px-0 py-20">
+			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 py-20">
 				<h2 className="text-2xl font-medium mb-4">Team</h2>
 				<p className="mb-12">Learn more about our team</p>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
