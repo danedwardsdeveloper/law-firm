@@ -72,7 +72,14 @@ export default function RootLayout({
 					</Link>
 					<Menu />
 					<ContactFormModal />
-					<div className="mt-12 mb-20">{children}</div>
+					<div
+						className={mergeClasses(
+							'mt-16', // Offset fixed mobile menu
+							'mb-20',
+						)}
+					>
+						{children}
+					</div>
 					<Footer />
 				</Provider>
 				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
