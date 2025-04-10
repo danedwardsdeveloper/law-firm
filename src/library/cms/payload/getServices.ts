@@ -1,8 +1,8 @@
 import { payloadCmsBase } from '@/library/environment/publicVariables'
 import { payloadCmsSecret } from '@/library/environment/serverVariables'
 import logger from '@/library/logger'
-import { deReference, downloadImage } from '@/library/utilities/server'
-import type { PayloadMedia, Service } from '@/types'
+import { downloadImage } from '@/library/utilities/server'
+import type { Service } from '@/types'
 import urlJoin from 'proper-url-join'
 
 let servicesCache: Service[] | undefined = undefined
@@ -11,7 +11,8 @@ export async function getServices(): Promise<Service[]> {
 	if (servicesCache) return servicesCache
 
 	try {
-		const response = await fetch(urlJoin(payloadCmsBase, 'api', 'services'), {
+		const cacheBust = `?t=${Date.now()}`
+		const response = await fetch(urlJoin(payloadCmsBase, 'api/services', cacheBust), {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${payloadCmsSecret}`,
@@ -29,9 +30,7 @@ export async function getServices(): Promise<Service[]> {
 
 		for (const document of data.docs) {
 			try {
-				const media = deReference<PayloadMedia>(document.featuredImage)
-
-				const imageFileName = media.url.split('/').pop() || ''
+				const imageFileName = document.featuredImage.filename
 
 				await downloadImage({
 					imageFileName,
@@ -42,14 +41,14 @@ export async function getServices(): Promise<Service[]> {
 				processedServices.push({
 					...document,
 					featuredImage: {
-						...media,
 						url: urlJoin('/images/payload/services', imageFileName, {
 							leadingSlash: true,
 						}),
 					},
 				} as Service)
 			} catch (error) {
-				logger.error(`Error processing service "${document.serviceType || 'unknown'}":`, error)
+				const errorMessage = error instanceof Error ? error.message : `Error processing service "${document.serviceType || 'unknown'}":`
+				logger.error(errorMessage)
 			}
 		}
 
@@ -63,7 +62,7 @@ export async function getServices(): Promise<Service[]> {
 		return servicesCache
 	} catch (error) {
 		const errorMessage = `getServices error: ${error instanceof Error ? error.message : String(error)}`
-		logger.warn(errorMessage)
+		logger.warn(errorMessage.slice(0, 2000))
 		return []
 	}
 }
