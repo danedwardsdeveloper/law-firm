@@ -1,9 +1,9 @@
 'use client'
 import { mergeClasses } from '@/library/utilities/browser'
-import { Menu as MenuIcon } from 'lucide-react'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Menu as MenuIcon, X as XIcon } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import CTA from './CTA'
 import CompanyLogo from './CompanyLogo'
 
@@ -28,47 +28,70 @@ const menuItems = [
 
 export default function Menu() {
 	const pathname = usePathname()
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-	const toggleMobileMenuOpen = () => {
-		setMobileMenuOpen((current) => !current)
-	}
+	const router = useRouter()
 
 	return (
 		<>
-			<nav data-component="MobileMenu" className="fixed bg-cream-50 w-full lg:hidden py-2 px-2 sm:px-4 border-b-2 border-zinc-100 text-xl">
-				<div className="flex items-center justify-between">
-					<Link
-						href="/"
-						className="font-bold text-lg sm:text-2xl p-1 rounded-md active:bg-cream-100 transition-colors duration-300 flex items-center gap-x-2"
-					>
-						<CompanyLogo size="size-9" />
-						Archer Finch Legal
-					</Link>
-					<MenuIcon className="size-10 p-1 active:bg-cream-100 transition-colors duration-300" onClick={toggleMobileMenuOpen} />
-				</div>
-				{mobileMenuOpen && (
-					<ul className="flex flex-col gap-y-6 mt-12 mb-3 px-4 max-w-sm justify-self-end w-full sm:text-right bg-cream-100 fixed inset-0 h-80 top-9">
-						{menuItems.map((item) => (
-							<li key={item.href}>
+			<Disclosure as="nav" data-component="MobileMenu" className="fixed w-full lg:hidden">
+				{({ close }) => (
+					<>
+						<div className="bg-cream-50 py-2 px-2 sm:px-4 border-b-2 border-cream-100 text-xl z-30">
+							<div className="flex items-center justify-between">
 								<Link
-									href={item.href}
-									onClick={() => setMobileMenuOpen(false)}
-									className={mergeClasses(
-										'block underline-offset-4 font-medium p-1 active:bg-cream-100 rounded-md w-full',
-										pathname.includes(item.href) && ' underline',
-									)}
+									href="/"
+									className="font-bold text-lg sm:text-2xl p-1 rounded-md active:bg-cream-100 transition-colors duration-300 flex items-center gap-x-2"
 								>
-									{item.display}
+									<CompanyLogo size="size-9" />
+									Archer Finch Legal
 								</Link>
-							</li>
-						))}
-						<li>
-							<CTA classes="w-full sm:max-w-sm" />
-						</li>
-					</ul>
+								<DisclosureButton className="group relative p-1 active:bg-cream-100 transition-colors duration-300 rounded-md">
+									<span className="sr-only">Open main menu</span>
+									<MenuIcon className="size-10 block group-data-[open]:hidden" aria-hidden="true" />
+									<XIcon className="size-10 hidden group-data-[open]:block" aria-hidden="true" />
+								</DisclosureButton>
+							</div>
+						</div>
+						<DisclosurePanel className="lg:hidden transition duration-500 ease-in-out transform data-[closed]:opacity-0 data-[closed]:-translate-y-5">
+							<div className="bg-cream-100 shadow-md px-4 pt-6 pb-4 border-b border-zinc-200 z-20">
+								<ul className="flex flex-col gap-y-6 max-w-sm w-full">
+									{menuItems.map((item) => (
+										<li key={item.href}>
+											{pathname.includes(item.href) ? (
+												<span className="text-lg block underline-offset-4 p-2 bg-cream-50 font-semibold rounded-md w-full">
+													{item.display}
+												</span>
+											) : (
+												<button
+													type="button"
+													onClick={() => {
+														setTimeout(() => {
+															router.push(item.href)
+															close()
+														}, 1000)
+													}}
+													className="text-lg text-left underline-offset-4 font-medium p-2 active:bg-cream-50 rounded-md w-full"
+												>
+													{item.display}
+												</button>
+											)}
+										</li>
+									))}
+									<li>
+										<CTA
+											classes="w-full sm:max-w-sm"
+											onClick={() => {
+												setTimeout(() => {
+													close()
+												}, 1000)
+											}}
+										/>
+									</li>
+								</ul>
+							</div>
+						</DisclosurePanel>
+					</>
 				)}
-			</nav>
+			</Disclosure>
 			<nav
 				data-component="DesktopMenu"
 				className="w-full hidden lg:flex items-center justify-between py-2   lg:px-4 xl:px-12 border-b-2 border-zinc-200 text-xl"
