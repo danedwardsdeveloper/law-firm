@@ -40,7 +40,8 @@ export async function downloadImage({
 
 		logger.success(`Downloaded ${imageFileName}: ${relativeFilePath}`)
 	} catch (error) {
-		logger.error(`Error downloading image ${imageFileName}:`, error)
+		const errorMessage = error instanceof Error ? error.message : `Error downloading image ${imageFileName}:`
+		logger.error('Error downloading image: ', imageFileName, errorMessage)
 		throw error
 	}
 }
