@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 }
 
 export default function TestimonialsLayout({ children }: { children: ReactNode }) {
-	return <>{children}</>
+	return <div className="max-w-4xl w-full mx-auto px-4 lg:px-0">{children}</div>
 }
