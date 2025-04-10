@@ -1,3 +1,4 @@
+import BreadCrumbs from '@/components/BreadCrumbs'
 import { getServiceBySlug, getServices } from '@/library/cms/payload/getServices'
 import { titleMetadataPhrases } from '@/library/constants'
 import { optimiseTitle } from '@/library/utilities/server'
@@ -54,11 +55,21 @@ export default async function ServicePage({ params }: { params: Params }) {
 	const { tagline, serviceType, content, featuredImage } = serviceData
 
 	return (
-		<div className="max-w-prose">
-			<h1 className="text-xl font-medium mb-4">{serviceType}</h1>
-			<span className="block font-bold text-4xl mb-6 text-balance">{tagline}</span>
-			<Image src={featuredImage.url} alt="" width={1920} height={1280} className="w-full max-w-md rounded-md mb-12" />
-			<RichText data={content} className="flex flex-col gap-y-4" />
-		</div>
+		<>
+			<BreadCrumbs trail={[{ display: 'Services', href: '/services' }]} current={serviceType} />
+			<main className="max-w-prose" id="main-content">
+				<h1 className="text-xl font-medium mb-4">{serviceType}</h1>
+				<span className="block font-bold text-4xl mb-6 text-balance">{tagline}</span>
+				<Image
+					src={featuredImage.url}
+					alt=""
+					width={1920}
+					height={1280}
+					// placeholder="blur"
+					className="w-full max-w-md rounded-md mb-12"
+				/>
+				<RichText data={content} className="flex flex-col gap-y-4" />
+			</main>
+		</>
 	)
 }
