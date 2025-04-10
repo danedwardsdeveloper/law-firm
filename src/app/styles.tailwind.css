@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+	@apply font-semibold mb-6 text-zinc-950;
+}
+
+.rich-text h2 {
+	@apply text-3xl;
+}
+
+.rich-text h3 {
+	@apply text-2xl;
+}
+
+.rich-text h4 {
+	@apply text-xl;
+}
+
+.rich-text p {
+	@apply mb-8;
+}
+
+.rich-text p:has(+ h2),
+.rich-text p:has(+ h3),
+.rich-text p:has(+ h4),
+.rich-text ul:has(+ h2),
+.rich-text ul:has(+ h3),
+.rich-text ul:has(+ h4),
+.rich-text ol:has(+ h2),
+.rich-text ol:has(+ h3),
+.rich-text ol:has(+ h4) {
+	@apply mb-16;
+}
+
+.rich-text ul,
+.rich-text ol {
+	@apply pl-6 mb-12;
+}
+
+.rich-text li {
+	@apply mb-3;
+}
+
+.rich-text ul {
+	@apply list-disc;
+}
+
+.rich-text ol {
+	@apply list-decimal;
+}
+
+.rich-text a {
+	@apply text-blue-600 hover:underline;
+}
+
+.rich-text blockquote {
+	@apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
