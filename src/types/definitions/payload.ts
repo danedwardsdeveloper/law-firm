@@ -9,9 +9,9 @@ export interface PayloadMedia {
 	alt: string
 	updatedAt: string
 	createdAt: string
-	url?: string | null
+	url: string
 	thumbnailURL?: string | null
-	filename?: string | null
+	filename: string
 	mimeType?: string | null
 	filesize?: number | null
 	width?: number | null
