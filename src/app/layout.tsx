@@ -7,6 +7,7 @@ import ContactFormModal from '@/components/contactFormModal'
 import Footer from '@/components/footer'
 import { mergeClasses } from '@/library/utilities/browser'
 import { Plus_Jakarta_Sans } from 'next/font/google'
+import Link from 'next/link'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
 import socialImage from '../../public/images/archer-finch-legal.png'
@@ -43,6 +44,10 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: dynamicBaseURL,
 	},
+	robots: {
+		index: true,
+		follow: true,
+	},
 }
 
 export const viewport: Viewport = {
@@ -57,11 +62,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900 text-base')}>
-			<body className="flex flex-col w-full min-h-screen bg-amber-50">
+			<body className="flex flex-col w-full min-h-screen bg-cream-50">
 				<Provider>
+					<Link
+						href="#main-content"
+						className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:outline focus:outline-2 focus:text-xl focus:underline-offset-2 focus:underline focus:rounded-md focus:bg-cream-50 focus:border-cream-100"
+					>
+						Skip to main content
+					</Link>
 					<Menu />
 					<ContactFormModal />
-					<div className="max-w-4xl w-full mx-auto mt-12 mb-20 px-4 lg:px-0">{children}</div>
+					<div className="mt-12 mb-20">{children}</div>
 					<Footer />
 				</Provider>
 				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
