@@ -13,6 +13,8 @@ export default function TeamMemberCard({ teamMember, priority }: { teamMember: T
 				width={1200}
 				height={630}
 				priority={priority}
+				// ToDo: placeholder handling
+				// placeholder="blur"
 				className="rounded-md"
 			/>
 		</Link>
