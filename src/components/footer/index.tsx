@@ -1,7 +1,35 @@
+import companyIcon from '@/app/icon.svg'
+import { getPayloadArticles } from '@/library/cms/payload/getArticles'
 import { getServices } from '@/library/cms/payload/getServices'
+import Image from 'next/image'
 import Link from 'next/link'
-import { footerLinks, socialLinks } from './data'
+import CopyrightNotice from './CopyrightNotice'
+import { FaceBookLogo, InstagramLogo, XLogo, YouTubeLogo } from './SocialLogos'
 
+export const socialLinks = [
+	{
+		name: 'Facebook',
+		href: '#',
+		icon: () => <FaceBookLogo />,
+	},
+	{
+		name: 'Instagram',
+		href: '#',
+		icon: () => <InstagramLogo />,
+	},
+	{
+		name: 'X',
+		href: '#',
+		icon: () => <XLogo />,
+	},
+	{
+		name: 'YouTube',
+		href: '#',
+		icon: () => <YouTubeLogo />,
+	},
+]
+
+// Optimisation ToDo: Make active links bold without using usePathname
 export default async function Footer() {
 	const servicesData = await getServices()
 	const servicesLinks = servicesData.slice(0, 4).map((item) => ({
@@ -9,13 +37,17 @@ export default async function Footer() {
 		href: `/services/${item.slug}`,
 	}))
 
+	const allArticlesData = await getPayloadArticles()
+	const companyPages = allArticlesData.filter((article) => article.companyPage)
+	const policyPages = allArticlesData.filter((article) => article.policyPage)
+
 	return (
-		<footer className="bg-amber-100">
-			<div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-				<div className="xl:grid xl:grid-cols-3 xl:gap-8">
+		<footer className="bg-cream-100">
+			<div className="px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+				<div className="mx-auto max-w-5xl xl:grid xl:grid-cols-3 xl:gap-8">
 					<div className="space-y-8">
 						{/* Company details */}
-						<div className="size-9 bg-purple-300 rounded" />
+						<Image src={companyIcon} alt="Archer Finch Legal logo" className="size-9" />
 						<p className="text-balance leading-6 ">
 							<strong>Archer Finch Legal</strong>
 							<br />
@@ -34,65 +66,49 @@ export default async function Footer() {
 					</div>
 
 					{/* Link columns */}
-					<div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-						<div className="md:grid md:grid-cols-2 md:gap-8">
-							<div>
-								<h3 className="leading-6 font-semibold">Services</h3>
-								<ul className="mt-6 space-y-4">
-									{servicesLinks.map((item) => (
-										<li key={item.name}>
-											<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
-							<div className="mt-10 md:mt-0">
-								<h3 className="leading-6 font-semibold">{footerLinks[0].title}</h3>
-								<ul className="mt-6 space-y-4">
-									{footerLinks[0].links.map((item) => (
-										<li key={item.name}>
-											<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
+					<div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 md:col-span-3">
+						<div className="">
+							<h3 className="leading-6 font-semibold">Services</h3>
+							<ul className="mt-6 space-y-4">
+								{servicesLinks.map((item) => (
+									<li key={item.name}>
+										<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
+											{item.name}
+										</Link>
+									</li>
+								))}
+							</ul>
 						</div>
-						<div className="md:grid md:grid-cols-2 md:gap-8">
-							<div>
-								<h3 className="leading-6 font-semibold">{footerLinks[1].title}</h3>
-								<ul className="mt-6 space-y-4">
-									{footerLinks[1].links.map((item) => (
-										<li key={item.name}>
-											<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
-							<div className="mt-10 md:mt-0">
-								<h3 className="leading-6 font-semibold">{footerLinks[2].title}</h3>
-								<ul className="mt-6 space-y-4">
-									{footerLinks[2].links.map((item) => (
-										<li key={item.name}>
-											<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
+						<div className="">
+							<h3 className="leading-6 font-semibold">Company</h3>
+							<ul className="mt-6 space-y-4">
+								{companyPages.map(({ id, slug, title }) => (
+									<li key={id}>
+										<Link href={`/articles/${slug}`} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
+											{title}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div>
+							<h3 className="leading-6 font-semibold">Policies</h3>
+							<ul className="mt-6 space-y-4">
+								{policyPages.map(({ id, slug, title }) => (
+									<li key={id}>
+										<Link href={`/articles/${slug}`} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
+											{title}
+										</Link>
+									</li>
+								))}
+							</ul>
 						</div>
 					</div>
 				</div>
 
 				{/* Copyright & credit */}
-				<div className="mt-16 border-t border-zinc-900/10 pt-8 sm:mt-20 lg:mt-24 leading-6 text-zinc-600 flex justify-between">
-					<p>&copy; 1998 - {new Date().getFullYear()} Archer Finch Legal LLP. All rights reserved.</p>
+				<div className="mt-16 border-t border-zinc-900/10 pt-8 sm:mt-20 lg:mt-24 leading-6 text-zinc-600 flex flex-col-reverse text-right md:flex-row gap-y-8 md:justify-between">
+					<CopyrightNotice />
 					<p>
 						Site by{' '}
 						<Link href="https://danedwardsdeveloper.com/" className="hover:text-zinc-900 transition-colors duration-300">
