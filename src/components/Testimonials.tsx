@@ -9,7 +9,7 @@ export default function Testimonials({ testimonials, priorityIndices = [] }: { t
 					<Image
 						src={photo}
 						alt={altText}
-						className="max-w-60 rounded-md"
+						className="w-full max-w-60 rounded-md shrink-0"
 						priority={priorityIndices.includes(index)}
 						sizes="240px"
 						placeholder="blur"
