@@ -1,12 +1,14 @@
-import BreadCrumbs from '@/components/BreadCrumbs'
+import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
 import { getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
+import { titleMetadataPhrases } from '@/library/constants'
+import { optimiseTitle } from '@/library/utilities/server'
 import type { Metadata } from 'next'
 import TeamMemberCard from './TeamMemberCard'
 
 export const metadata: Metadata = {
-	title: 'Team members | Archer Finch Legal, intellectual property lawyers',
+	title: optimiseTitle({ base: 'Team', additionalPhraseOptions: titleMetadataPhrases }),
 	description:
-		'Expert intellectual property lawyers at Archer Finch Legal. Meet our dedicated team of IP specialists committed to protecting your creative assets.',
+		'Meet the experienced intellectual property lawyers at Archer Finch Legal. Our diverse team of IP specialists protect your creative and business assets.',
 	alternates: {
 		canonical: '/team',
 	},
@@ -16,16 +18,15 @@ export default async function TeamPage() {
 	const teamMembersData = await getTeamMembers()
 
 	return (
-		<>
-			<BreadCrumbs current="Team" />
-			<main id="main-content">
-				<h1 className="text-4xl font-bold mb-12 text-zinc-900">Team</h1>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
-					{teamMembersData.map((teamMember, index) => (
-						<TeamMemberCard key={teamMember.slug} teamMember={teamMember} priority={index < 2} />
-					))}
-				</div>
-			</main>
-		</>
+		<LevelTwoPageLayout
+			title="Team"
+			intro={[
+				'Our team combines deep technical knowledge with practical legal expertise to protect what matters most to you.',
+				'From experienced partners to rising specialists, each member brings a unique perspective and dedicated approach to intellectual property law.',
+			]}
+			content={teamMembersData.map((teamMember, index) => (
+				<TeamMemberCard key={teamMember.slug} teamMember={teamMember} priority={index < 2} />
+			))}
+		/>
 	)
 }

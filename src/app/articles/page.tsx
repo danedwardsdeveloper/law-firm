@@ -1,25 +1,30 @@
-import BreadCrumbs from '@/components/BreadCrumbs'
+import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
 import { getPayloadArticles } from '@/library/cms/payload/getArticles'
+import { titleMetadataPhrases } from '@/library/constants'
+import { optimiseTitle } from '@/library/utilities/server'
+import type { Metadata } from 'next'
 import ArticleCard from './ArticleCard'
+
+export const metadata: Metadata = {
+	title: optimiseTitle({ base: 'Articles', additionalPhraseOptions: titleMetadataPhrases }),
+	description:
+		"Expert insights on intellectual property law from Archer Finch - articles covering copyright, patents, and trademarks from London's leading IP solicitors.",
+	alternates: {
+		canonical: '/articles',
+	},
+}
 
 export default async function ArticlesPage() {
 	const allArticles = await getPayloadArticles()
 
 	return (
-		<>
-			<BreadCrumbs current="Articles" />
-			<main id="main-content">
-				<h1 className="text-4xl font-bold mb-8 text-zinc-900">Articles</h1>
-				<p className="mb-16 max-w-2xl text-lg text-pretty">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</p>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
-					{allArticles.map((article, index) => (
-						<ArticleCard key={article.slug} article={article} priority={index < 2} />
-					))}
-				</div>
-			</main>
-		</>
+		<LevelTwoPageLayout
+			title="Articles"
+			intro={[
+				'Stay informed on the evolving landscape of intellectual property law with insights from our expert team.',
+				'Our articles provide practical guidance on protecting your creative and business assets, emerging legal challenges, and strategic approaches to IP that can give you a competitive advantage.',
+			]}
+			content={allArticles.map((article, index) => <ArticleCard key={article.slug} article={article} priority={index < 2} />)}
+		/>
 	)
 }

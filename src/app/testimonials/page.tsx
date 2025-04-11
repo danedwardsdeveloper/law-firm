@@ -1,21 +1,30 @@
-import BreadCrumbs from '@/components/BreadCrumbs'
-import Testimonials from '@/components/Testimonials'
+import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
+import { TestimonialCard } from '@/components/TestimonialCard'
+import { titleMetadataPhrases } from '@/library/constants'
+import { optimiseTitle } from '@/library/utilities/server'
+import type { Metadata } from 'next'
 import { testimonials } from './data'
+
+export const metadata: Metadata = {
+	title: optimiseTitle({ base: 'Testimonials', additionalPhraseOptions: titleMetadataPhrases }),
+	description:
+		'Testimonials for Archer Finch Law, a London intellectual property law firm specialising in copyright infringement and trademark protection.',
+	alternates: {
+		canonical: '/testimonials',
+	},
+}
 
 export default function TestimonialsPage() {
 	return (
-		<>
-			<BreadCrumbs current="Testimonials" />
-			<main id="main-content">
-				<div className="mb-20">
-					<h1 className="text-4xl font-bold mb-12 text-zinc-900">Testimonials</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-						enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-					</p>
-				</div>
-				<Testimonials testimonials={testimonials} priorityIndices={[0]} />
-			</main>
-		</>
+		<LevelTwoPageLayout
+			title="Testimonials"
+			intro={[
+				"Our clients' experiences speak volumes about our commitment to protecting your intellectual property.",
+				'From trademark defense to patent applications, we translate complex legal challenges into clear, effective solutions.',
+			]}
+			content={testimonials.map((testimonial, mapIndex) => (
+				<TestimonialCard key={testimonial.index} testimonial={testimonial} priority={mapIndex < 2} />
+			))}
+		/>
 	)
 }
