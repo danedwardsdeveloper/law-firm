@@ -54,9 +54,13 @@
 }
 
 .rich-text a {
-	@apply text-blue-600 hover:underline;
+	@apply link text-blue-600;
 }
 
 .rich-text blockquote {
 	@apply border-l-4 border-gray-300 pl-4 italic my-4;
+}
+
+.link {
+	@apply transition-colors duration-300 underline underline-offset-4 decoration-transparent hover:decoration-current hover:text-blue-500 active:text-blue-500 sm:active:text-blue-600;
 }
