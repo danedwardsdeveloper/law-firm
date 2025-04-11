@@ -7,6 +7,7 @@ import sarahChen from './images/sarah-chen.png'
 
 export const testimonials: Testimonial[] = [
 	{
+		index: 0,
 		service: 'Trademark protection',
 		writer: {
 			name: 'Sarah Chen',
@@ -24,6 +25,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
+		index: 1,
 		service: 'IP due diligence',
 		writer: {
 			name: 'Alicia Peters',
@@ -41,6 +43,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
+		index: 2,
 		service: 'Licensing agreement',
 		writer: {
 			name: 'Martin Dedeine',
@@ -59,6 +62,7 @@ export const testimonials: Testimonial[] = [
 	},
 
 	{
+		index: 3,
 		service: 'Patent application',
 		writer: {
 			name: 'Dr. Elena Kapoor',
@@ -76,6 +80,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
+		index: 4,
 		service: 'Copyright infringement',
 		writer: {
 			name: 'Daniel Reeves',
