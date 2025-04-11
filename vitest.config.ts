@@ -5,7 +5,7 @@ export default defineConfig({
 	test: {
 		include: ['**/*.test.ts'],
 		exclude: ['**/node_modules/**', '.next/**'],
-		slowTestThreshold: 5000,
+		slowTestThreshold: 10000,
 	},
 	resolve: {
 		alias: {
