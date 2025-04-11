@@ -2,15 +2,19 @@
 	"type": "module",
 	"scripts": {
 		"dev": "NODE_OPTIONS=--no-deprecation next dev --turbo",
-		"build": "NODE_OPTIONS=--no-deprecation next build",
+		"build": "NODE_OPTIONS=--no-deprecation pnpm format && pnpm lint && next build",
+		"build:vercel": "NODE_OPTIONS=--no-deprecation pnpm build && NODE_OPTIONS=--no-deprecation vercel build",
 		"start": "next start",
 		"lint": "next lint",
 		"format": "biome format . --write",
 		"check": "biome check . --write --unsafe",
-		"links": "linkinator http://localhost:3000 --recurse",
-		"test": "vitest",
+		"links": "NODE_OPTIONS=--no-deprecation linkinator http://localhost:3000 --recurse",
+		"test": "NODE_OPTIONS=--no-deprecation vitest",
 		"predeploy": "pnpm format && pnpm lint && vercel build",
 		"deploy": "vercel deploy --prebuilt"
+	},
+	"engines": {
+		"node": "22.x"
 	},
 	"dependencies": {
 		"@aws-sdk/client-ses": "^3.782.0",
