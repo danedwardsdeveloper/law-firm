@@ -1,11 +1,10 @@
-import BreadCrumbs from '@/components/BreadCrumbs'
+import LevelThreePageLayout from '@/components/LevelThreePageLayout'
 import { getPayloadArticleBySlug, getPayloadArticles } from '@/library/cms/payload/getArticles'
-import { formatDate } from '@/library/utilities/browser'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { differenceInDays } from 'date-fns'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import TimeStamps from './TimeStamps'
 
 type ResolvedParams = { article: string }
 type Params = Promise<ResolvedParams>
@@ -71,17 +70,13 @@ export default async function ArticlePage({ params }: { params: Params }) {
 		featuredImage: { url },
 	} = article
 
-	const createdAtDate = new Date(createdAt)
-	const updatedAtDate = new Date(updatedAt)
-	const hasBeenUpdated = differenceInDays(updatedAtDate, createdAtDate) > 0
-
 	return (
-		<>
-			<BreadCrumbs trail={[{ display: 'Articles', href: '/articles' }]} current={title} />
-			<main id="main-content">
-				<h1 className="text-4xl font-semibold mb-12 text-balance">{title}</h1>
-				<p className="mb-12 max-w-2xl text-balance text-lg">{excerpt}</p>
-				{url && (
+		<LevelThreePageLayout
+			title={title}
+			breadCrumbTrail={[{ display: 'Articles', href: '/articles' }]}
+			intro={[excerpt]}
+			content={
+				<>
 					<Image
 						src={url}
 						alt={excerpt}
@@ -93,22 +88,10 @@ export default async function ArticlePage({ params }: { params: Params }) {
 						blurDataURL={featuredImagePlaceholder}
 						className="w-full max-w-xl rounded-md mb-12"
 					/>
-				)}
-				<RichText data={content} className="leading-8 text-zinc-700 max-w-prose text-lg rich-text" />
-				{/* This could be a separate component Timestamps */}
-				<div className="text-zinc-700 max-w-prose text-md">
-					<p>
-						{hasBeenUpdated && <span>Published </span>}
-						<time>{formatDate(createdAtDate)}</time>
-					</p>
-					{hasBeenUpdated && (
-						<p>
-							<span>Updated </span>
-							<time>{formatDate(updatedAtDate)}</time>
-						</p>
-					)}
-				</div>
-			</main>
-		</>
+					<RichText data={content} className="leading-8 text-zinc-700 max-w-prose text-lg rich-text" />
+					<TimeStamps createdAt={new Date(createdAt)} updatedAt={new Date(updatedAt)} />
+				</>
+			}
+		/>
 	)
 }
