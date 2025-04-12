@@ -74,8 +74,7 @@ export default function RootLayout({
 					<ContactFormModal />
 					<div
 						className={mergeClasses(
-							'mt-16', // Offset fixed mobile menu
-							'mb-20',
+							'mt-16 lg:mt-0', // Offset fixed mobile menu
 						)}
 					>
 						{children}
