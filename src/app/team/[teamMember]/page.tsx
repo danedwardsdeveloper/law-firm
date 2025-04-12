@@ -1,4 +1,4 @@
-import BreadCrumbs from '@/components/BreadCrumbs'
+import LevelThreePageLayout from '@/components/LevelThreePageLayout'
 import { getTeamMemberBySlug, getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -40,32 +40,34 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 	const teamMemberSlug = (await params).teamMember
 	const teamMember = await getTeamMemberBySlug(teamMemberSlug)
 
-	if (!teamMember) {
-		notFound()
-	}
+	if (!teamMember) notFound()
+
+	const { title, role, featuredImage, metaDescription, content } = teamMember
 
 	return (
-		<>
-			<BreadCrumbs trail={[{ display: 'Team', href: '/team' }]} current={teamMember.title} />
-			<main className="flex flex-col gap-y-4" id="main-content">
-				<p className="font-medium">{teamMember.role}</p>
-				<h1>{teamMember.title}</h1>
-				<Image
-					src={teamMember.featuredImage}
-					alt={teamMember.metaDescription}
-					width={1200}
-					height={630}
-					priority
-					sizes="421"
-					placeholder="blur"
-					className="w-full max-w-xl rounded-md mb-12"
-				/>
-				<div
-					className="flex flex-col gap-y-8 leading-8 text-zinc-700 max-w-prose text-lg"
-					// biome-ignore lint/security/noDangerouslySetInnerHtml:
-					dangerouslySetInnerHTML={{ __html: teamMember.content }}
-				/>
-			</main>
-		</>
+		<LevelThreePageLayout
+			title={`${title}, ${role}`}
+			breadCrumbTrail={[{ display: 'Team', href: '/team' }]}
+			intro={[metaDescription]}
+			content={
+				<>
+					<Image
+						src={featuredImage}
+						alt={metaDescription}
+						width={1200}
+						height={630}
+						priority
+						sizes="421" // ToDo
+						// placeholder="blur"
+						className="w-full max-w-xl rounded-md mb-12"
+					/>
+					<div
+						className="flex flex-col gap-y-8 leading-8 text-zinc-700 max-w-prose text-lg"
+						// biome-ignore lint/security/noDangerouslySetInnerHtml:
+						dangerouslySetInnerHTML={{ __html: content }}
+					/>
+				</>
+			}
+		/>
 	)
 }
