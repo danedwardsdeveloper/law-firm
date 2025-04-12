@@ -8,5 +8,10 @@ export default function CopyrightNotice() {
 		setCurrentYear(new Date().getFullYear().toString())
 	}, [])
 
-	return <p>&copy; 1996 - {currentYear} Archer Finch Legal LLP. All rights reserved.</p>
+	return (
+		<div className="flex flex-col md:flex-row md:gap-x-1">
+			<span>&copy; 1996 - {currentYear} Archer Finch Legal LLP.</span>
+			<span>All rights reserved.</span>
+		</div>
+	)
 }
