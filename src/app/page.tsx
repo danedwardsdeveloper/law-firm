@@ -1,3 +1,4 @@
+import CtaSection from '@/components/CtaSection'
 import ServiceCard from '@/components/ServiceCard'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import Hero from '@/components/hero'
@@ -78,6 +79,8 @@ export default async function HomePage() {
 					</section>
 				</div>
 			))}
+
+			<CtaSection />
 		</main>
 	)
 }
