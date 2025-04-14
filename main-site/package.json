@@ -1,4 +1,5 @@
 {
+	"name": "main-site",
 	"type": "module",
 	"private": true,
 	"scripts": {
