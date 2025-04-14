@@ -11,12 +11,12 @@ import { sortArticles } from './sortArticles'
 
 let articlesCache: PayloadArticle[] | undefined = undefined
 
-export async function getPayloadArticles(): Promise<PayloadArticle[]> {
+export async function getArticles(): Promise<PayloadArticle[]> {
 	if (articlesCache) return articlesCache
 
 	try {
 		const cacheBust = `?t=${Date.now()}`
-		const response = await fetch(urlJoin(payloadCmsBase, 'api/articles', cacheBust), {
+		const response = await fetch(urlJoin(payloadCmsBase, 'api/articles', cacheBust, '&limit=100'), {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${payloadCmsSecret}`,
@@ -24,7 +24,7 @@ export async function getPayloadArticles(): Promise<PayloadArticle[]> {
 		})
 
 		if (!response.ok) {
-			logger.warn('Fetch Payload articles response not okay. Is the Payload server running?')
+			logger.warn('Fetch articles response not okay. Is the Payload server running?')
 			return []
 		}
 
@@ -78,14 +78,14 @@ export async function getPayloadArticles(): Promise<PayloadArticle[]> {
 
 		return articlesCache
 	} catch (error) {
-		const errorMessage = `getPayloadArticles error: ${error instanceof Error ? error.message : String(error)}`
+		const errorMessage = `getArticles error: ${error instanceof Error ? error.message : String(error)}`
 		logger.warn(errorMessage)
 		return []
 	}
 }
 
-export async function getPayloadArticleBySlug(slug: string): Promise<PayloadArticle | undefined> {
-	const articles = await getPayloadArticles()
+export async function getArticleBySlug(slug: string): Promise<PayloadArticle | undefined> {
+	const articles = await getArticles()
 	const article = articles.find((article) => article.slug === slug)
 	return article || undefined
 }
