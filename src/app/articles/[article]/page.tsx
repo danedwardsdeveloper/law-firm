@@ -1,5 +1,5 @@
-import LevelThreePageLayout from '@/components/LevelThreePageLayout'
-import { getPayloadArticleBySlug, getPayloadArticles } from '@/library/cms/payload/getArticles'
+import LevelThreeLayout from '@/components/LevelThreeLayout'
+import { getArticleBySlug, getArticles } from '@/library/cms/payload'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -11,9 +11,8 @@ type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-	const resolvedParams = await params
-	const articleSlug = resolvedParams.article
-	const article = await getPayloadArticleBySlug(articleSlug)
+	const articleSlug = (await params).article
+	const article = await getArticleBySlug(articleSlug)
 
 	if (!article) throw new Error('Article not found')
 
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export async function generateStaticParams(): StaticParams {
-	const allArticles = await getPayloadArticles()
+	const allArticles = await getArticles()
 	return allArticles.map((article) => ({
 		article: article.slug,
 	}))
@@ -56,7 +55,7 @@ export async function generateStaticParams(): StaticParams {
 
 export default async function ArticlePage({ params }: { params: Params }) {
 	const articleSlug = (await params).article
-	const article = await getPayloadArticleBySlug(articleSlug)
+	const article = await getArticleBySlug(articleSlug)
 
 	if (!article) notFound()
 
@@ -71,7 +70,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 	} = article
 
 	return (
-		<LevelThreePageLayout
+		<LevelThreeLayout
 			title={title}
 			breadCrumbTrail={[{ display: 'Articles', href: '/articles' }]}
 			intro={[excerpt]}
