@@ -2,8 +2,7 @@ import CtaSection from '@/components/CtaSection'
 import ServiceCard from '@/components/ServiceCard'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import Hero from '@/components/hero'
-import { getPayloadArticles } from '@/library/cms/payload/getArticles'
-import { getServices } from '@/library/cms/payload/getServices'
+import { getArticles, getServices } from '@/library/cms/payload'
 import { getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
 import { mergeClasses } from '@/library/utilities/browser'
 import Link from 'next/link'
@@ -15,7 +14,7 @@ import { testimonials } from './testimonials/data'
 export default async function HomePage() {
 	const allTeamMembers = await getTeamMembers()
 	const allServices = await getServices()
-	const allArticles = await getPayloadArticles()
+	const allArticles = await getArticles()
 
 	interface SectionProps {
 		heading: string
