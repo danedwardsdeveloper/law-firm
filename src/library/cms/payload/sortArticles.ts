@@ -2,6 +2,7 @@ import type { PayloadArticle } from '@/types'
 
 /**
  * Sorting function that groups articles into normal, company, and policy categories
+ * Only used by getServices, so it isn't exported from the barrel
  * @param articles - Array of articles
  * @returns Sorted array in order: normal, company, policy - each sub-sorted by date
  */
