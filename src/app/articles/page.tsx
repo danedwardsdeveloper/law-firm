@@ -1,5 +1,5 @@
-import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
-import { getPayloadArticles } from '@/library/cms/payload/getArticles'
+import LevelTwoLayout from '@/components/LevelTwoLayout'
+import { getArticles } from '@/library/cms/payload'
 import { titleMetadataPhrases } from '@/library/constants'
 import { optimiseTitle } from '@/library/utilities/server'
 import type { Metadata } from 'next'
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 }
 
 export default async function ArticlesPage() {
-	const allArticles = await getPayloadArticles()
+	const allArticles = await getArticles()
 
 	return (
-		<LevelTwoPageLayout
+		<LevelTwoLayout
 			title="Articles"
 			intro={[
 				'Stay informed on the evolving landscape of intellectual property law with insights from our expert team.',

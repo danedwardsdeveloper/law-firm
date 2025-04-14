@@ -1,4 +1,4 @@
-import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
+import LevelTwoLayout from '@/components/LevelTwoLayout'
 import ServiceCard from '@/components/ServiceCard'
 import { getServices } from '@/library/cms/payload/getServices'
 import { titleMetadataPhrases } from '@/library/constants'
@@ -20,7 +20,7 @@ export default async function ServicesPage() {
 	if (!allServices) return notFound()
 
 	return (
-		<LevelTwoPageLayout
+		<LevelTwoLayout
 			title="Services"
 			intro={[
 				'Our specialized intellectual property services help businesses protect their most valuable assets.',

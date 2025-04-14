@@ -1,4 +1,4 @@
-import LevelTwoPageLayout from '@/components/LevelTwoPageLayout'
+import LevelTwoLayout from '@/components/LevelTwoLayout'
 import { getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
 import { titleMetadataPhrases } from '@/library/constants'
 import { optimiseTitle } from '@/library/utilities/server'
@@ -18,7 +18,7 @@ export default async function TeamPage() {
 	const teamMembersData = await getTeamMembers()
 
 	return (
-		<LevelTwoPageLayout
+		<LevelTwoLayout
 			title="Team"
 			intro={[
 				'Our team combines deep technical knowledge with practical legal expertise to protect what matters most to you.',
