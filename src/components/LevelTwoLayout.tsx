@@ -2,13 +2,15 @@ import type { ReactNode } from 'react'
 import BreadCrumbs from './BreadCrumbs'
 import CtaSection from './CtaSection'
 
-export default function LevelTwoPageLayout({
+export default function LevelTwoLayout({
 	title,
 	intro,
+	grid = true,
 	content,
 }: {
 	title: string
 	intro: string[]
+	grid?: boolean
 	content: ReactNode
 }) {
 	return (
@@ -22,7 +24,7 @@ export default function LevelTwoPageLayout({
 							<p key={paragraph}>{paragraph}</p>
 						))}
 					</div>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">{content}</div>
+					{grid ? <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">{content}</div> : <div>{content}</div>}
 				</main>
 			</div>
 			<CtaSection />

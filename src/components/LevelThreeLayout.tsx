@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import BreadCrumbs, { type BreadCrumbTrail } from './BreadCrumbs'
 import CtaSection from './CtaSection'
 
-export default function LevelThreePageLayout({
+export default function LevelThreeLayout({
 	title,
 	breadCrumbTrail,
 	intro,
@@ -15,7 +15,7 @@ export default function LevelThreePageLayout({
 }) {
 	return (
 		<>
-			<div className="max-w-4xl w-full mx-auto px-4 lg:px-0 mt-4 sm:mt-8 mb-20">
+			<div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 mt-4 sm:mt-8 mb-20">
 				<BreadCrumbs trail={breadCrumbTrail} current={title} />
 				<main id="main-content">
 					<header className="flex flex-col max-w-2xl">
