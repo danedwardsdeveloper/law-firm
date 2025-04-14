@@ -1,4 +1,3 @@
-import logger from '@/library/logger'
 import { formatDate } from '@/library/utilities/browser'
 import { describe, expect, test } from 'vitest'
 
@@ -16,9 +15,6 @@ const acceptedCases: { description: string; content: Date; expected: string }[] 
 ]
 
 describe('Format date', () => {
-	const dateString = formatDate(acceptedCases[0].content)
-	logger.info('Date string: ', dateString)
-
 	for (const acceptedCase of acceptedCases) {
 		test(`Accepts ${acceptedCase.description}`, () => {
 			const dateString = formatDate(acceptedCase.content)
