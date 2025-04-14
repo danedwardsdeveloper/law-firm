@@ -1,6 +1,5 @@
 import companyIcon from '@/app/icon.svg'
-import { getPayloadArticles } from '@/library/cms/payload/getArticles'
-import { getServices } from '@/library/cms/payload/getServices'
+import { getArticles, getServices } from '@/library/cms/payload'
 import Image from 'next/image'
 import Link from 'next/link'
 import CopyrightNotice from './CopyrightNotice'
@@ -32,14 +31,42 @@ export const socialLinks = [
 // Optimisation ToDo: Make active links bold without using usePathname
 export default async function Footer() {
 	const servicesData = await getServices()
-	const servicesLinks = servicesData.slice(0, 4).map((item) => ({
-		name: item.serviceType,
-		href: `/services/${item.slug}`,
-	}))
 
-	const allArticlesData = await getPayloadArticles()
+	const allArticlesData = await getArticles()
 	const companyPages = allArticlesData.filter((article) => article.companyPage)
 	const policyPages = allArticlesData.filter((article) => article.policyPage)
+
+	interface LinkColum {
+		heading: string
+		links: { key: string | number; href: string; name: string }[]
+	}
+
+	const linksColumns: LinkColum[] = [
+		{
+			heading: 'Services',
+			links: servicesData.map(({ serviceType, slug }) => ({
+				key: serviceType,
+				name: serviceType,
+				href: `/services/${slug}`,
+			})),
+		},
+		{
+			heading: 'Policies',
+			links: policyPages.map(({ id, slug, title }) => ({
+				key: id,
+				name: title,
+				href: `/articles/${slug}`,
+			})),
+		},
+		{
+			heading: 'Company',
+			links: companyPages.map(({ id, slug, title }) => ({
+				key: id,
+				name: title,
+				href: `/articles/${slug}`,
+			})),
+		},
+	]
 
 	return (
 		<footer className="bg-cream-100">
@@ -65,44 +92,22 @@ export default async function Footer() {
 						</div>
 					</div>
 
-					{/* Link columns */}
+					{/* Links columns */}
 					<div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-12 md:col-span-3">
-						<div className="">
-							<h3 className="leading-6 font-semibold">Services</h3>
-							<ul className="mt-6 space-y-4">
-								{servicesLinks.map((item) => (
-									<li key={item.name}>
-										<Link href={item.href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-											{item.name}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div className="">
-							<h3 className="leading-6 font-semibold">Company</h3>
-							<ul className="mt-6 space-y-4">
-								{companyPages.map(({ id, slug, title }) => (
-									<li key={id}>
-										<Link href={`/articles/${slug}`} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-											{title}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div>
-							<h3 className="leading-6 font-semibold">Policies</h3>
-							<ul className="mt-6 space-y-4">
-								{policyPages.map(({ id, slug, title }) => (
-									<li key={id}>
-										<Link href={`/articles/${slug}`} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
-											{title}
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
+						{linksColumns.map(({ heading, links }) => (
+							<div key={heading}>
+								<h3 className="leading-6 font-semibold">{heading}</h3>
+								<ul className="mt-6 space-y-4">
+									{links.map(({ key, name, href }) => (
+										<li key={key}>
+											<Link href={href} className="leading-6 text-zinc-600 hover:text-zinc-900 transition-colors duration-300">
+												{name}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</div>
+						))}
 					</div>
 				</div>
 
@@ -111,7 +116,7 @@ export default async function Footer() {
 					<CopyrightNotice />
 					<p>
 						Site by{' '}
-						<Link href="https://danedwardsdeveloper.com/" className="hover:text-zinc-900 transition-colors duration-300">
+						<Link href="https://danedwardsdeveloper.com/" className="text-zinc-600 link">
 							Dan Edwards
 						</Link>
 					</p>
