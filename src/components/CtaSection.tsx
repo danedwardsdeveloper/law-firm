@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import CTA from './CTA'
 
 export default function CtaSection() {
@@ -9,9 +10,9 @@ export default function CtaSection() {
 				</h2>
 				<div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:shrink-0">
 					<CTA invertColours />
-					<a href="/articles/about" className="text-sm/6 font-semibold text-white">
+					<Link href="/articles/about" className="text-sm/6 font-semibold text-white">
 						Learn more <span aria-hidden="true">→</span>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
