@@ -1,4 +1,4 @@
-import LevelThreePageLayout from '@/components/LevelThreePageLayout'
+import LevelThreeLayout from '@/components/LevelThreeLayout'
 import { getTeamMemberBySlug, getTeamMembers } from '@/library/cms/wordpress/getTeamMembers'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -9,13 +9,10 @@ type Params = Promise<ResolvedParams>
 type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-	const resolvedParams = await params
-	const teamMemberSlug = resolvedParams.teamMember
+	const teamMemberSlug = (await params).teamMember
 	const teamMember = await getTeamMemberBySlug(teamMemberSlug)
 
-	if (!teamMember) {
-		throw new Error('Team member not found')
-	}
+	if (!teamMember) throw new Error('Team member not found')
 
 	return {
 		title: `${teamMember.title} | Archer Finch Legal, intellectual property lawyers`,
@@ -45,7 +42,7 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 	const { title, role, featuredImage, metaDescription, content } = teamMember
 
 	return (
-		<LevelThreePageLayout
+		<LevelThreeLayout
 			title={`${title}, ${role}`}
 			breadCrumbTrail={[{ display: 'Team', href: '/team' }]}
 			intro={[metaDescription]}
