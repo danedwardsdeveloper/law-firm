@@ -1,8 +1,8 @@
 {
 	"name": "law-firm",
+	"description": "Website for a fictional intellectual property law firm built with Next.js, with WordPress and Payload as separate local-only CMSs",
 	"private": true,
 	"scripts": {
 		"dev": "pnpm --filter main-site dev"
-	},
-	"workspaces": ["main-site", "cms-payload", "cms-wordpress"]
+	}
 }
