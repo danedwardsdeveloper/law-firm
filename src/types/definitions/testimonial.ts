@@ -2,7 +2,7 @@ import type { StaticImageData } from 'next/image'
 import type { ServiceName } from './services'
 
 export interface Testimonial {
-	index: number
+	anchor: string
 	service: ServiceName
 	writer: {
 		name: string
