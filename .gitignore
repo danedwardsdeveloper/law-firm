@@ -1,4 +1,4 @@
-/node_modules
+node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,10 +9,10 @@
 
 /coverage
 
-/.next/
-/out/
+**/.next/
+**/out/
 
-/build
+**/build
 
 .DS_Store
 *.pem
@@ -28,5 +28,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/public/images/wordpress
-/public/images/payload
+main-site/public/images/wordpress
+main-site/public/images/payload

@@ -1,64 +1,7 @@
 {
-	"type": "module",
+	"name": "law-firm",
+	"private": true,
 	"scripts": {
-		"dev": "NODE_OPTIONS=--no-deprecation next dev --turbo",
-		"build": "NODE_OPTIONS=--no-deprecation pnpm format && pnpm lint && next build",
-		"build:vercel": "NODE_OPTIONS=--no-deprecation pnpm build && NODE_OPTIONS=--no-deprecation vercel build",
-		"start": "next start",
-		"lint": "next lint",
-		"format": "biome format . --write",
-		"check": "biome check . --write --unsafe",
-		"links": "NODE_OPTIONS=--no-deprecation linkinator http://localhost:3000 --recurse",
-		"test": "NODE_OPTIONS=--no-deprecation vitest",
-		"predeploy": "pnpm format && pnpm lint && vercel build",
-		"deploy": "vercel deploy --prebuilt"
-	},
-	"engines": {
-		"node": "22.x"
-	},
-	"dependencies": {
-		"@aws-sdk/client-ses": "^3.782.0",
-		"@headlessui/react": "^2.2.0",
-		"@heroicons/react": "^2.2.0",
-		"@hookform/resolvers": "^5.0.1",
-		"@payloadcms/richtext-lexical": "^3.31.0",
-		"@types/proper-url-join": "^2.1.5",
-		"clsx": "^2.1.1",
-		"date-fns": "^4.1.0",
-		"humanize-plus": "^1.8.2",
-		"lucide-react": "^0.485.0",
-		"next": "15.2.4",
-		"payload": "^3.31.0",
-		"proper-url-join": "^2.1.2",
-		"react": "19.0.0",
-		"react-dom": "19.0.0",
-		"react-hook-form": "^7.55.0",
-		"sharp": "^0.33.5",
-		"tailwind-merge": "^3.0.2",
-		"zod": "^3.24.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@next/eslint-plugin-next": "^15.2.1",
-		"@types/express": "^4.17.21",
-		"@types/humanize-plus": "^1.8.2",
-		"@types/node": "^20.17.6",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
-		"autoprefixer": "^10.4.20",
-		"axios": "^1.8.4",
-		"dotenv": "^16.4.7",
-		"eslint": "^9.20.1",
-		"eslint-config-next": "^15.2.1",
-		"express": "^4.21.1",
-		"linkinator": "^6.1.2",
-		"node-fetch": "^3.3.2",
-		"plaiceholder": "^3.0.0",
-		"postcss": "^8.4.48",
-		"puppeteer": "^24.4.0",
-		"tailwindcss": "^3.4.14",
-		"tsx": "^4.19.2",
-		"typescript": "^5.6.3",
-		"vitest": "^3.1.1"
+		"dev": "pnpm --filter main-site dev"
 	}
 }
