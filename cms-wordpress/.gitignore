@@ -1,0 +1,8 @@
+.DS_Store
+
+# Track wp-content/plugins/law-firm
+!/wp-content
+/wp-content/*
+!/wp-content/plugins
+/wp-content/plugins/*
+!/wp-content/plugins/law-firm-custom-types

@@ -1,0 +1,5 @@
+{
+	"name": "cms-wordpress",
+	"private": true,
+	"description": "headless WordPress CMS for an intellectual property law firm build with Next.js"
+}
