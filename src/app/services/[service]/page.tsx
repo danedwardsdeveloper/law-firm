@@ -1,4 +1,4 @@
-import LevelThreePageLayout from '@/components/LevelThreePageLayout'
+import LevelThreeLayout from '@/components/LevelThreeLayout'
 import { getServiceBySlug, getServices } from '@/library/cms/payload/getServices'
 import { titleMetadataPhrases } from '@/library/constants'
 import { optimiseTitle } from '@/library/utilities/server'
@@ -8,8 +8,8 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 type ResolvedParams = { service: string }
-type StaticParams = ResolvedParams[]
 type Params = Promise<ResolvedParams>
+type StaticParams = Promise<ResolvedParams[]>
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
 	const serviceSlug = (await params).service
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	}
 }
 
-export async function generateStaticParams(): Promise<StaticParams> {
+export async function generateStaticParams(): StaticParams {
 	const allServices = await getServices()
 	return allServices.map((service) => ({
 		service: service.slug,
@@ -53,7 +53,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 	const { tagline, serviceType, content, featuredImage } = serviceData
 
 	return (
-		<LevelThreePageLayout
+		<LevelThreeLayout
 			title={serviceType}
 			breadCrumbTrail={[{ display: 'Services', href: '/services' }]}
 			intro={[tagline]}
