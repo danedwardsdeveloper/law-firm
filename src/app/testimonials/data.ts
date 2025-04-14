@@ -7,7 +7,7 @@ import sarahChen from './images/sarah-chen.png'
 
 export const testimonials: Testimonial[] = [
 	{
-		index: 0,
+		anchor: 'trademark-protection',
 		service: 'Trademark protection',
 		writer: {
 			name: 'Sarah Chen',
@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
-		index: 1,
+		anchor: 'ip-due-diligence',
 		service: 'IP due diligence',
 		writer: {
 			name: 'Alicia Peters',
@@ -43,7 +43,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
-		index: 2,
+		anchor: 'licensing-agreement',
 		service: 'Licensing agreement',
 		writer: {
 			name: 'Martin Dedeine',
@@ -60,9 +60,8 @@ export const testimonials: Testimonial[] = [
 			'Working with Archer Finch has given us the confidence to focus on creating extraordinary gaming experiences while knowing our IP rights are secure.',
 		],
 	},
-
 	{
-		index: 3,
+		anchor: 'patent-application',
 		service: 'Patent application',
 		writer: {
 			name: 'Dr. Elena Kapoor',
@@ -80,7 +79,7 @@ export const testimonials: Testimonial[] = [
 		],
 	},
 	{
-		index: 4,
+		anchor: 'copyright-infringement',
 		service: 'Copyright infringement',
 		writer: {
 			name: 'Daniel Reeves',
