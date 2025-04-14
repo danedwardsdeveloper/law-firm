@@ -1,0 +1,45 @@
+services:
+  payload:
+    container_name: payload-main
+    image: node:18-slim
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: >
+      sh -c "
+        npm install -g pnpm@9.9.0 &&
+        pnpm install --frozen-lockfile &&
+        pnpm dev
+      "
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+
+  postgres:
+    container_name: payload-database
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+    image: postgres:17.4
+    environment:
+      POSTGRES_DB: law_firm
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # - ./create-dan-user.sql:/docker-entrypoint-initdb.d/1-create-dan-user.sql
+      # - ./law_firm_backup.sql:/docker-entrypoint-initdb.d/law_firm_backup.sql
+    ports:
+      - '5432:5432'
+
+volumes:
+  data:
+  pgdata:
+  node_modules:

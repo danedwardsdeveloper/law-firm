@@ -1,0 +1,14 @@
+# Start
+docker-compose up --build
+
+# Stop
+docker-compose down -v
+
+# Check for data
+docker exec -it payload-database psql -U postgres -d law_firm -c "SELECT COUNT(*) FROM services"
+
+# List containers
+docker volume ls
+
+# Delete a container
+docker volume rm law-firm-cms-payload_pgdata
