@@ -1,4 +1,7 @@
 {
+	"buildCommand": "pnpm build",
+	"installCommand": "pnpm install --no-frozen-lockfile",
+	"framework": "nextjs",
 	"builds": [
 		{
 			"src": "package.json",
