@@ -6,7 +6,11 @@ import { useProvider } from './Provider'
  * Opens the contact form modal
  * Accepts an optional onClick property so that the CTA on the mobile menu can close the mobile menu panel at the same time, otherwise scrolling is disabled and the form isn't useable
  */
-export default function CTA({ classes, onClick, invertColours }: { classes?: string; onClick?: () => void; invertColours?: boolean }) {
+export default function CtaButton({
+	classes,
+	onClick,
+	invertColours,
+}: { classes?: string; onClick?: () => void; invertColours?: boolean }) {
 	const { setContactFormVisible } = useProvider()
 
 	const handleClick = () => {
@@ -22,7 +26,7 @@ export default function CTA({ classes, onClick, invertColours }: { classes?: str
 			type="button"
 			onClick={handleClick}
 			className={mergeClasses(
-				'hover:shadow-md active:shadow-md  transition-all duration-300 px-4 py-1 rounded-lg font-bold text-xl ',
+				'hover:shadow-md active:shadow-md  transition-all duration-300 px-4 py-1 rounded-lg font-bold text-xl',
 				invertColours ? invertedColourClasses : colourClasses,
 				classes,
 			)}
