@@ -11,7 +11,10 @@ import ArticleCard from './articles/ArticleCard'
 import TeamMemberCard from './team/TeamMemberCard'
 import { testimonials } from './testimonials/data'
 
-export default async function HomePage() {
+/**
+ * @description Exported for use in the RootNotFound page
+ */
+export async function HomePageContent() {
 	const allTeamMembers = await getTeamMembers()
 	const allServices = await getServices()
 	const allArticles = await getArticles()
@@ -61,11 +64,10 @@ export default async function HomePage() {
 	]
 
 	return (
-		<main id="main-content">
-			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 sm:min-h-[90vh] mt-6 sm:mt-6 mb-20 sm:mb-0">
+		<>
+			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 sm:min-h-[90vh] mt-6 sm:mt-6 md:mt-12 lg:mt-20 mb-20 sm:mb-0">
 				<Hero />
 			</section>
-
 			{sectionContent.map(({ heading, intro, content, linkText, linkTarget }, index) => (
 				<div key={heading} className={mergeClasses(!(index % 2) && 'bg-cream-100')}>
 					<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 py-20">
@@ -78,8 +80,15 @@ export default async function HomePage() {
 					</section>
 				</div>
 			))}
-
 			<CtaSection />
+		</>
+	)
+}
+
+export default function HomePage() {
+	return (
+		<main id="main-content">
+			<HomePageContent />
 		</main>
 	)
 }
