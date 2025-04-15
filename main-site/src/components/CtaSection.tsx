@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import CTA from './CTA'
+import CTA from './CtaButton'
 
 export default function CtaSection() {
 	return (
 		<div className="bg-green-600">
-			<div className="mx-auto max-w-4xl px-6 lg:px-0 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between">
+			<div className="mx-auto max-w-4xl px-6 xl:px-0 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between">
 				<h2 className="max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl text-balance">
 					Protect your intellectual property
 				</h2>
