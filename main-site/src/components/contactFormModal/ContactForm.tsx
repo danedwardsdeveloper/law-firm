@@ -106,10 +106,10 @@ export default function ContactForm() {
 				{/* Email */}
 				<div className="w-full mb-5">
 					<div className="mb-1">
-						<label htmlFor="email" className="font-medium">
+						<label htmlFor="email" className="block md:inline font-medium">
 							Email
 						</label>
-						{errors.email && <span className="ml-2 text-red-600">{errors.email.message}</span>}
+						{errors.email && <span className="ml-0 md:ml-2 block md:inline md:mb-1 text-red-600">{errors.email.message}</span>}
 					</div>
 
 					<input
@@ -127,10 +127,10 @@ export default function ContactForm() {
 				{/* Message */}
 				<div className="w-full mb-5">
 					<div className="mb-1">
-						<label htmlFor="message" className="font-medium">
+						<label htmlFor="message" className="block md:inline font-medium">
 							Message
 						</label>
-						{errors.message && <span className="ml-2 text-red-600">{errors.message.message}</span>}
+						{errors.message && <span className="ml-0 md:ml-2 block md:inline md:mb-1 text-red-600">{errors.message.message}</span>}
 					</div>
 					<textarea
 						id="message"
