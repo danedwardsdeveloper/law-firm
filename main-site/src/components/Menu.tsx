@@ -4,8 +4,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { Menu as MenuIcon, X as XIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import CTA from './CTA'
 import CompanyLogo from './CompanyLogo'
+import CTA from './CtaButton'
 
 const menuItems = [
 	{

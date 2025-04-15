@@ -1,6 +1,6 @@
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-import CTA from '../CTA'
+import CTA from '../CtaButton'
 import heroImage from './hero-image.png'
 
 export default function Hero() {
