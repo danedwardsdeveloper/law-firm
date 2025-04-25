@@ -65,7 +65,7 @@ export default async function HomeContent() {
 
 	return (
 		<>
-			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 sm:min-h-[90vh] mt-6 sm:mt-6 md:mt-12 lg:mt-20 mb-20 sm:mb-0">
+			<section className="max-w-4xl w-full mx-auto px-4 lg:px-12 xl:px-0 sm:min-h-[90vh] mt-6 sm:mt-6 md:mt-12 lg:mt-20 mb-20 md:mb-0">
 				<Hero />
 			</section>
 			{sectionContent.map(({ heading, intro, content, linkText, linkTarget }, index) => (
