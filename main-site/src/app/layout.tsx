@@ -1,31 +1,30 @@
-import { dynamicBaseURL } from '@/library/environment/publicVariables'
-import type { Metadata, Viewport } from 'next'
-import './styles.tailwind.css'
-import Menu from '@/components/Menu'
-import Provider from '@/components/Provider'
-import ContactFormModal from '@/components/contactFormModal'
-import Footer from '@/components/footer'
-import { mergeClasses } from '@/library/utilities/browser'
-import { Plus_Jakarta_Sans } from 'next/font/google'
-import Link from 'next/link'
-import Script from 'next/script'
-import type { ReactNode } from 'react'
-import socialImage from '../../public/images/archer-finch-legal.png'
+import { dynamicBaseURL } from "@/library/environment/publicVariables";
+import type { Metadata, Viewport } from "next";
+import "./styles.tailwind.css";
+import Menu from "@/components/Menu";
+import Provider from "@/components/Provider";
+import SplashScreen from "@/components/SplashScreen";
+import ContactFormModal from "@/components/contactFormModal";
+import Footer from "@/components/footer";
+import { mergeClasses } from "@/library/utilities/browser";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Link from "next/link";
+import Script from "next/script";
+import type { ReactNode } from "react";
+import socialImage from "../../public/images/archer-finch-legal.png";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-plus-jakarta-sans',
-})
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-plus-jakarta-sans",
+});
 
-const metatitle = 'Archer Finch Legal | Intellectual property lawyers, London'
+const metatitle = "Archer Finch Legal | Intellectual property lawyers, London";
 
 const metadescription =
-	'Archer Finch Legal provides expert intellectual property services in London, offering practical advice on trademarks, copyright, patents and IP litigation.'
+	"Archer Finch Legal provides expert intellectual property services in London, offering practical advice on trademarks, copyright, patents and IP litigation.";
 
-if (!socialImage) {
-	throw new Error('Layout.tsx: social image missing')
-}
+if (!socialImage) throw new Error("Layout.tsx: social image missing");
 
 export const metadata: Metadata = {
 	title: metatitle,
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		images: [
 			{
-				url: '/images/archer-finch-legal.png',
+				url: "/images/archer-finch-legal.png",
 				height: 630,
 				width: 1200,
 				alt: metatitle,
@@ -48,21 +47,29 @@ export const metadata: Metadata = {
 		index: true,
 		follow: true,
 	},
-}
+};
 
 export const viewport: Viewport = {
 	initialScale: 1,
-	width: 'device-width',
-}
+	width: "device-width",
+};
 
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: ReactNode
+	children: ReactNode;
 }>) {
 	return (
-		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900 text-base antialiased')}>
-			<body className="flex flex-col w-full min-h-screen bg-cream-50">
+		<html
+			lang="en-GB"
+			suppressHydrationWarning
+			className={mergeClasses(
+				plusJakartaSans.className,
+				"text-zinc-900 text-base antialiased",
+			)}
+		>
+			<body className="flex flex-col w-full min-h-screen bg-cream-50 wrap-break-word">
+				<SplashScreen />
 				<Provider>
 					<Link
 						href="#main-content"
@@ -74,15 +81,18 @@ export default function RootLayout({
 					<ContactFormModal />
 					<div
 						className={mergeClasses(
-							'mt-16 lg:mt-0', // Offset fixed mobile menu
+							"mt-16 lg:mt-0", // Offset fixed mobile menu
 						)}
 					>
 						{children}
 					</div>
 					<Footer />
 				</Provider>
-				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" strategy="lazyOnload" />
+				<Script
+					src="https://scripts.simpleanalyticscdn.com/latest.js"
+					strategy="lazyOnload"
+				/>
 			</body>
 		</html>
-	)
+	);
 }
