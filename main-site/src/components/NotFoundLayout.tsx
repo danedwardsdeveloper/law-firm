@@ -1,7 +1,7 @@
-import { HomeIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import type { ReactNode } from "react";
-import CompanyLogo from "./CompanyLogo";
+import { HomeIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import type { ReactNode } from 'react'
+import CompanyLogo from './CompanyLogo'
 
 function StoryBrand() {
 	return (
@@ -14,40 +14,30 @@ function StoryBrand() {
 				<p>Intellectual property lawyers, London</p>
 			</div>
 		</div>
-	);
+	)
 }
 
-function ContentContainer({
-	useGrid,
-	children,
-}: { useGrid: boolean; children: ReactNode }) {
+function ContentContainer({ useGrid, children }: { useGrid: boolean; children: ReactNode }) {
 	if (useGrid) {
 		return (
 			<div className="max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 mt-4 sm:mt-8 mb-20">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
-					{children}
-				</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">{children}</div>
 			</div>
-		);
+		)
 	}
 
-	return children;
+	return children
 }
 
 interface Props {
-	contentType?: "team member" | "article" | "service";
-	showStoryBrand?: boolean;
-	suggestedContentTitle?: string;
-	useGrid?: boolean;
-	suggestedContent: ReactNode;
+	contentType?: 'team member' | 'article' | 'service'
+	showStoryBrand?: boolean
+	suggestedContentTitle?: string
+	useGrid?: boolean
+	suggestedContent: ReactNode
 }
 
-export default function NotFoundLayout({
-	showStoryBrand = true,
-	suggestedContent,
-	suggestedContentTitle,
-	useGrid = true,
-}: Props) {
+export default function NotFoundLayout({ showStoryBrand = true, suggestedContent, suggestedContentTitle, useGrid = true }: Props) {
 	return (
 		<main id="main-content">
 			<div className="max-w-4xl mx-auto px-4 pt-12 md:pt-20 mb-12">
@@ -70,13 +60,9 @@ export default function NotFoundLayout({
 			</div>
 
 			<div>
-				<h2 className="text-2xl lg:text-3xl font-bold mb-16 text-balance text-center">
-					{suggestedContentTitle}
-				</h2>
-				<ContentContainer useGrid={useGrid}>
-					{suggestedContent}
-				</ContentContainer>
+				<h2 className="text-2xl lg:text-3xl font-bold mb-16 text-balance text-center">{suggestedContentTitle}</h2>
+				<ContentContainer useGrid={useGrid}>{suggestedContent}</ContentContainer>
 			</div>
 		</main>
-	);
+	)
 }
