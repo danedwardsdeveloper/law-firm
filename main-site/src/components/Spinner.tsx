@@ -1,7 +1,7 @@
 import { mergeClasses } from '@/library/utilities/browser'
 
 interface Props {
-	colour?: 'text-zinc-900'
+	colour?: 'text-zinc-900' | 'text-black'
 	size?: 'size-5' | 'size-7'
 }
 
