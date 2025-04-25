@@ -54,9 +54,9 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 						width={1200}
 						height={630}
 						priority
-						sizes="421" // ToDo
-						// placeholder="blur"
 						className="w-full max-w-xl rounded-md mb-12"
+						sizes="(max-width: 639px) min(calc(100vw - 1rem), 36rem), 
+       min(calc(100vw - 1.5rem), 36rem)"
 					/>
 					<div
 						className="flex flex-col gap-y-8 leading-8 text-zinc-700 max-w-prose text-lg"

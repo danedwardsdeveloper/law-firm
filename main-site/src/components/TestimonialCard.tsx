@@ -16,7 +16,15 @@ export function TestimonialCard({
 }: { testimonial: Testimonial; priority: boolean }) {
 	return (
 		<Link href={`/testimonials/#${anchor}`} className="hover:opacity-80 transition-opacity duration-300">
-			<Image src={photo} alt={altText} className="w-auto max-h-72 rounded-md mb-2" priority={priority} sizes="240px" placeholder="blur" />
+			<Image
+				src={photo}
+				alt={altText}
+				className="w-auto max-h-72 rounded-md mb-2"
+				priority={priority}
+				sizes="240px"
+				placeholder="blur"
+				// ToDo: Sizes prop
+			/>
 			<h3 className="text-xl font-medium">{service}</h3>
 			<p className="mb-3">
 				{`${name}, ${role}`}

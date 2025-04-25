@@ -64,8 +64,9 @@ export default async function ServicePage({ params }: { params: Params }) {
 						alt=""
 						width={1920}
 						height={1280}
-						// placeholder="blur"
-						className="w-full max-w-md rounded-md mb-12"
+						className="w-full max-w-xl rounded-md mb-12"
+						sizes="(max-width: 639px) min(calc(100vw - 1rem), 36rem), 
+       min(calc(100vw - 1.5rem), 36rem)"
 					/>
 					<RichText data={content} className="flex flex-col gap-y-4" />
 				</>

@@ -36,8 +36,8 @@ export default function Hero() {
 					<Image
 						src={heroImage}
 						alt="A smiling young architect with glasses holding rolled blueprints against his chest in a bright office environment."
-						placeholder="blur"
 						className="rounded-md"
+						sizes="(max-width: 767px) min(calc(100vw - 1rem), 37.5rem), 27rem"
 					/>
 				</div>
 			</div>
