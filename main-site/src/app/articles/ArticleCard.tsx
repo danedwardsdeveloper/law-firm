@@ -23,6 +23,9 @@ export default function ArticleCard({
 				placeholder="blur"
 				blurDataURL={featuredImagePlaceholder}
 				className="rounded-md mb-2 w-full"
+				sizes="(max-width: 639px) calc(100vw - 1rem), 
+       (min-width: 640px) and (max-width: 767px) calc(100vw - 1.5rem), 
+       (min-width: 768px) min(calc((min(100vw, 42rem) - 2rem) / 2), 30.375rem)"
 			/>
 			<h2 className="text-xl font-medium mb-1">{title}</h2>
 			<p>{excerpt}</p>
