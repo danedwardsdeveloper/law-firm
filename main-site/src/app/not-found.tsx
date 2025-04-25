@@ -1,11 +1,10 @@
-import NotFound from '@/components/notFound'
-import { HomePageContent } from './page'
+import NotFoundLayout from '@/components/NotFoundLayout'
 
 export default function RootNotFound() {
 	return (
-		<NotFound //
+		<NotFoundLayout //
 			showStoryBrand={false}
-			suggestedContent={<HomePageContent />}
+			suggestedContent={<h1 className="text-center text-green-600 font-medium text-2xl mb-20">RootNotFound, rendered on the browser</h1>}
 			useGrid={false}
 		/>
 	)
