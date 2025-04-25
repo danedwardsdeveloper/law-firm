@@ -7,9 +7,9 @@ export default {
 			colors: {
 				'cream-50': '#faf9f5',
 				'cream-100': '#f0eee6',
-			},
-			fontSize: {
-				base: '1.125rem',
+				fontSize: {
+					base: 'var(--text-lg)',
+				},
 			},
 		},
 	},

@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@theme {
+	--text-base: 1.125rem;
+	--color-cream-50: #faf9f5;
+	--color-cream-100: #f0eee6;
+}
 
 .rich-text h2,
 .rich-text h3,
@@ -54,13 +57,15 @@
 }
 
 .rich-text a {
-	@apply link text-blue-600;
+	@apply text-blue-600 transition-colors duration-300 underline underline-offset-4 decoration-transparent hover:decoration-current hover:text-blue-500 active:text-blue-500 sm:active:text-blue-600;
 }
 
 .rich-text blockquote {
 	@apply border-l-4 border-gray-300 pl-4 italic my-4;
 }
 
-.link {
-	@apply transition-colors duration-300 underline underline-offset-4 decoration-transparent hover:decoration-current hover:text-blue-500 active:text-blue-500 sm:active:text-blue-600;
+@layer components {
+	.link {
+		@apply transition-colors duration-300 underline underline-offset-4 decoration-transparent hover:decoration-current hover:text-blue-500 active:text-blue-500 sm:active:text-blue-600;
+	}
 }
