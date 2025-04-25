@@ -74,7 +74,7 @@ export default async function Footer() {
 				<div className="mx-auto max-w-5xl xl:grid xl:grid-cols-3 xl:gap-8">
 					<div className="space-y-8">
 						{/* Company details */}
-						<Image src={companyIcon} alt="Archer Finch Legal logo" className="size-9" />
+						<Image src={companyIcon} alt="Archer Finch Legal logo" className="size-9" unoptimized />
 						<p className="text-balance leading-6 ">
 							<strong>Archer Finch Legal</strong>
 							<br />
