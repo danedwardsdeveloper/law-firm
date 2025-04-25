@@ -1,23 +1,30 @@
-'use client'
-import dynamic from 'next/dynamic'
-import { type Dispatch, type ReactNode, type SetStateAction, createContext, useContext, useState } from 'react'
+"use client";
+import dynamic from "next/dynamic";
+import {
+	type Dispatch,
+	type ReactNode,
+	type SetStateAction,
+	createContext,
+	useContext,
+	useState,
+} from "react";
 
 interface ProviderContextType {
-	contactFormVisible: boolean
-	setContactFormVisible: Dispatch<SetStateAction<boolean>>
+	contactFormVisible: boolean;
+	setContactFormVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ProviderContext = createContext<ProviderContextType>({
 	contactFormVisible: false,
 	setContactFormVisible: () => {},
-})
+});
 
 interface ProviderProps {
-	children: ReactNode
+	children: ReactNode;
 }
 
 function ProviderComponent({ children }: ProviderProps) {
-	const [contactFormVisible, setContactFormVisible] = useState<boolean>(false)
+	const [contactFormVisible, setContactFormVisible] = useState<boolean>(false);
 
 	return (
 		<ProviderContext.Provider
@@ -28,21 +35,21 @@ function ProviderComponent({ children }: ProviderProps) {
 		>
 			{children}
 		</ProviderContext.Provider>
-	)
+	);
 }
 
 export function useProvider() {
-	const context = useContext(ProviderContext)
+	const context = useContext(ProviderContext);
 
 	if (context === undefined) {
-		throw new Error('useProvider must be used within a Provider')
+		throw new Error("useProvider must be used within a Provider");
 	}
 
-	return context
+	return context;
 }
 
 const Provider = dynamic(() => Promise.resolve(ProviderComponent), {
 	ssr: false,
-})
+});
 
-export default Provider
+export default Provider;
