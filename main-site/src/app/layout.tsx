@@ -61,12 +61,12 @@ export default function RootLayout({
 	children: ReactNode
 }>) {
 	return (
-		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900 text-base')}>
+		<html lang="en-GB" suppressHydrationWarning className={mergeClasses(plusJakartaSans.className, 'text-zinc-900 text-base antialiased')}>
 			<body className="flex flex-col w-full min-h-screen bg-cream-50">
 				<Provider>
 					<Link
 						href="#main-content"
-						className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:outline focus:outline-2 focus:text-xl focus:underline-offset-2 focus:underline focus:rounded-md focus:bg-cream-50 focus:border-cream-100"
+						className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:p-4 focus:outline-2 focus:text-xl focus:underline-offset-2 focus:underline focus:rounded-md focus:bg-cream-50 focus:border-cream-100"
 					>
 						Skip to main content
 					</Link>
