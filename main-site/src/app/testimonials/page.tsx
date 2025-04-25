@@ -6,7 +6,10 @@ import Image from 'next/image'
 import { testimonials } from './data'
 
 export const metadata: Metadata = {
-	title: optimiseTitle({ base: 'Testimonials', additionalPhraseOptions: titleMetadataPhrases }),
+	title: optimiseTitle({
+		base: 'Testimonials',
+		additionalPhraseOptions: titleMetadataPhrases,
+	}),
 	description:
 		'Testimonials for Archer Finch Law, a London intellectual property law firm specialising in copyright infringement and trademark protection.',
 	alternates: {
@@ -34,6 +37,7 @@ export default function TestimonialsPage() {
 								sizes="240px"
 								placeholder="blur"
 								className="md:w-auto rounded-md md:max-h-72 mb-2 md:mb-0"
+								// ToDo: Sizes prop
 							/>
 							<div className="w-full ">
 								<h3 className="text-xl font-semibold text-balance mb-1">

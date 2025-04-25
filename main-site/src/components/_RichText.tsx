@@ -9,15 +9,7 @@ function CustomUploadComponent({ node }: { node: SerializedUploadNode }) {
 		if (typeof uploadDoc !== 'object') return null
 
 		const { alt, height, url, width } = uploadDoc
-		return (
-			<Image
-				alt={alt}
-				height={height}
-				src={url}
-				width={width}
-				// placeholder="blur"
-			/>
-		)
+		return <Image alt={alt} height={height} src={url} width={width} />
 	}
 }
 
