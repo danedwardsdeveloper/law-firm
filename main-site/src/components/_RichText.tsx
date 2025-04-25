@@ -6,9 +6,8 @@ import Image from 'next/image'
 function CustomUploadComponent({ node }: { node: SerializedUploadNode }) {
 	if (node.relationTo === 'uploads') {
 		const uploadDoc = node.value
-		if (typeof uploadDoc !== 'object') {
-			return null
-		}
+		if (typeof uploadDoc !== 'object') return null
+
 		const { alt, height, url, width } = uploadDoc
 		return (
 			<Image
@@ -20,8 +19,6 @@ function CustomUploadComponent({ node }: { node: SerializedUploadNode }) {
 			/>
 		)
 	}
-
-	return null
 }
 
 function createJsxConverters({ defaultConverters }: { defaultConverters: JSXConverters<DefaultNodeTypes> }) {
